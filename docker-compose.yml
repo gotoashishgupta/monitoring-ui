@@ -1,0 +1,55 @@
+version: '3.4'
+
+services:
+
+  local-secret-distributor-e2e-cost-service-api:
+    image: "wayfair/local-secret-distributor:latest"
+    platform: linux/arm64
+    environment:
+      DISTRIBUTIONS: "k8s_e2e-cost-service-api-dev"
+    volumes:
+      - "k8s_e2e-cost-service-api-dev:/wayfair/etc/priv/k8s_e2e-cost-service-api-dev"
+      - "k8s_e2e-cost-service-api-dev:/wayfair/etc/priv/credentials"
+      - "~/.vault-token:/root/hosthomedir/.vault-token"
+      - "/var/run/docker.sock:/run/docker.sock"
+
+  api.mock:
+    ports:
+      - "5000:5000"
+    image: wayfair/api.mock
+    command: ["conda", "run", "--no-capture-output", "-n", "api.mock", "poetry", "run", "python", "app.py"]
+    build:
+      dockerfile: Dockerfile
+      context: ./api/mock
+      target: dev
+    environment:
+      - ENVIRONMENT=dev
+    volumes:
+      - "./api/mock:/app"
+      - "k8s_e2e-cost-service-api-dev:/wayfair/etc/priv/credentials"
+    depends_on:
+      - local-secret-distributor-e2e-cost-service-api
+
+  monitoring-ai:
+    ports:
+      - "5173:5173"
+    image: wayfair/monitoring-ai
+    command: ["yarn", "dev"]
+    build:
+      dockerfile: Dockerfile
+      context: .
+      target: dev
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+      - VITE_API_URL=http://localhost:8080
+    volumes:
+      - node_modules:/app/node_modules
+      - "./:/app"
+
+volumes:
+  node_modules:
+  k8s_e2e-cost-service-api-dev:
+    driver_opts:
+      type: tmpfs
+      device: tmpfs

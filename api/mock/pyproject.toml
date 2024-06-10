@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "api.mock"
+version = "0.1.0"
+description = "MOCK APIs"
+authors = ["Ashish Gupta <gotoashishgupta@gmail.com>"]
+license = "Private"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+flask = "^2.0.2"
+flask-cors = "^3.0.10"
+
+# poetry add --group dev black mypy mkdocs flake8 bandit
+[tool.poetry.group.dev.dependencies]
+black = "^23.12.1"
+mypy = "^1.8.0"
+mkdocs = "^1.5.3"
+flake8 = "^7.0.0"
+bandit = "^1.7.6"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
