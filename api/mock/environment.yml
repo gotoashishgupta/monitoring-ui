@@ -1,0 +1,13 @@
+name: api.mock
+channels:
+  - apple
+  - pytorch
+  - defaults
+  # - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - poetry
+variables:
+  GRPC_PYTHON_BUILD_SYSTEM_OPENSSL: 1
+  GRPC_PYTHON_BUILD_SYSTEM_ZLIB: 1
