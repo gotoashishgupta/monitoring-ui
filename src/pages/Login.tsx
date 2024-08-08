@@ -14,10 +14,10 @@ export const Login: React.FC = (): JSX.Element => {
 	const { message } = App.useApp();
 
 	const { signIn, signOut, isLoggedIn } = useAuth();
-	const { redirect } = useSearch({ from: "/_public/login" });
+	const { redirect } = useSearch({ from: "/_public/m/login" });
 
 	const router = useRouter();
-	const { replace } = useRoute();
+	const { push } = useRoute();
 
 	const logIn = useCallback(async () => {
 		signIn();
@@ -29,7 +29,7 @@ export const Login: React.FC = (): JSX.Element => {
 	const logOut = useCallback(() => {
 		signOut();
 		router.invalidate();
-		replace("/login");
+		push("/m/login");
 	}, [redirect]);
 
 	return (

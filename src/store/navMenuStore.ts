@@ -1,4 +1,5 @@
 // src/store/userStore.ts
+import { mockNavMenu } from "#wf-local/_mock/navMenu";
 import { getItem, removeItem, setItem } from "#wf-local/common/storage";
 import { IMenuItem, StorageEnum } from "#wf-types/enum";
 import { create } from "zustand";
@@ -14,7 +15,7 @@ interface NavMenuStore {
 }
 
 const useNavMenuStore = create<NavMenuStore>((set) => ({
-	navMenu: getItem<IMenuItem[]>(StorageEnum.NavMenu) ?? [],
+	navMenu: getItem<IMenuItem[]>(StorageEnum.NavMenu) ?? mockNavMenu,
 	actions: {
 		setNavMenu: (navMenu: IMenuItem[]) => {
 			set({ navMenu });

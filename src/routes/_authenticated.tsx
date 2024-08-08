@@ -1,3 +1,4 @@
+import { navMenuQueryOptions } from "#wf-local/common/queryOptions";
 import { createFileRoute, redirect } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/_authenticated")({
@@ -5,7 +6,7 @@ export const Route = createFileRoute("/_authenticated")({
 		const { isLoggedIn } = context.authService;
 		if (!isLoggedIn()) {
 			throw redirect({
-				to: "/login",
+				to: "/m/login",
 				search: {
 					redirect: location.href,
 				},
@@ -13,4 +14,6 @@ export const Route = createFileRoute("/_authenticated")({
 			});
 		}
 	},
+	loader: (opts) =>
+		opts.context.queryClient.ensureQueryData(navMenuQueryOptions),
 });

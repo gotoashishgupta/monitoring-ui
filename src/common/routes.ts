@@ -1,11 +1,12 @@
 import { ascend } from "ramda";
 
-import { AppRouteObject, RouteMeta } from "#wf-types/router";
+import { IMenuItem } from "#wf-types/enum";
+import { AppRouteObject } from "#wf-types/router";
 
-export const menuFilter = (items: AppRouteObject[]) => {
+export const menuFilter = (items: IMenuItem[]) => {
 	return items
 		.filter((item) => {
-			const show = item.meta?.key;
+			const show = !item.hide;
 			if (show && item.children) {
 				item.children = menuFilter(item.children);
 			}
@@ -32,10 +33,10 @@ export function getMenuRoutes(appRouteObjects: AppRouteObject[]) {
 	return menuFilter(appRouteObjects);
 }
 
-export function flattenMenuRoutes(routes: AppRouteObject[]) {
-	return routes.reduce<RouteMeta[]>((prev, item) => {
-		const { meta, children } = item;
-		if (meta) prev.push(meta);
+export function flattenMenuRoutes(routes) {
+	return routes.reduce((prev, item) => {
+		const { route, children } = item;
+		prev.push(item);
 		if (children) prev.push(...flattenMenuRoutes(children));
 		return prev;
 	}, []);

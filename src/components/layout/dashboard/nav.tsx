@@ -20,6 +20,8 @@ import { NAV_COLLAPSED_WIDTH, NAV_WIDTH } from './config';
 import { ThemeLayout } from '#wf-types/enum';
 import {navMenuQueryOptions} from '#wf-local/common/queryOptions';
 import {AppRouteObject} from '#wf-types/router'
+import { useNavMenu } from '#wf-local/store/navMenuStore';
+import {useNavMenuElements} from '#wf-local/hooks/useNavMenuElements';
 
 const slideInLeft = varSlide({ distance: 10 }).inLeft;
 
@@ -43,13 +45,14 @@ export const Nav: React.FC = (props: Props) => {
     background: colorBgElevated,
   };
 
-  // const routeToMenuFn = useRouteToMenuFn();
-  // const navMenuRoutes = useNavMenuRoutes();
+  const navMenu = useNavMenu();
+  const navMenuElementsFn = useNavMenuElements();
 
+  const menuList = useMemo(() => {
+    return navMenuElementsFn(navMenu);
+  }, [navMenuElementsFn, navMenu]);
 
-  const menuList: any = useSuspenseQuery(navMenuQueryOptions)
-
-  const flattenedRoutes = flattenMenuRoutes(menuList);
+  const flattenedRoutes = flattenMenuRoutes(navMenu);
 
   /**
    * state
@@ -84,15 +87,17 @@ export const Nav: React.FC = (props: Props) => {
   const onOpenChange: MenuProps['onOpenChange'] = (keys) => {
     setOpenKeys(keys);
   };
-  const onClick: MenuProps['onClick'] = ({ key }) => {
-    const nextLink = flattenedRoutes?.find((el) => el.key === key);
+  const onClick: MenuProps['onClick'] = ({key}) => {
+    const nextLink = flattenedRoutes?.find((el) => el.id === key);
+
+    console.log(`nextLink`, nextLink);
 
     if (nextLink?.hideTab && nextLink?.frameSrc) {
       window.open(nextLink?.frameSrc, '_blank');
       return;
     }
 
-    navigate({to: key});
+    navigate({to: nextLink.route});
     props?.closeSideBarDrawer?.();
   };
 

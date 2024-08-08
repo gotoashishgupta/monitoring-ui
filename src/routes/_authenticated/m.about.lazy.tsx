@@ -4,6 +4,6 @@ function About() {
 	return <div className="p-2">Hello from About!</div>;
 }
 
-export const Route = createLazyFileRoute('/_authenticated/about')({
+export const Route = createLazyFileRoute('/_authenticated/m/about')({
   component: About,
 })

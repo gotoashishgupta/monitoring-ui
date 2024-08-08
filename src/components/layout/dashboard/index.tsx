@@ -1,5 +1,5 @@
 import { useScroll } from 'framer-motion';
-import React, { Suspense, useCallback, useEffect, useRef, useState } from 'react';
+import React, { Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 import { CircleLoading } from '#wf-local/components/loading';
@@ -13,6 +13,9 @@ import Nav from './nav';
 import NavHorizontal from './nav-horizontal';
 
 import { ThemeLayout, ThemeMode } from '#wf-types/enum';
+import { navMenuQueryOptions } from '#wf-local/common/queryOptions';
+import { useSuspenseQuery } from '@tanstack/react-query';
+import { useNavMenu, useNavMenuActions } from '#wf-local/store/navMenuStore';
 
 
 const StyleWrapper = styled.div<{ $themeMode?: ThemeMode }>`
@@ -37,6 +40,14 @@ const StyleWrapper = styled.div<{ $themeMode?: ThemeMode }>`
 
 
 export const DashboardLayout: React.FC = () => {
+  const { data } = useSuspenseQuery(navMenuQueryOptions);
+  const {setNavMenu} = useNavMenuActions()
+  let navMenu = useNavMenu();
+  useMemo(() => {
+    setNavMenu(data);
+  }, [data])
+
+
   const { colorBgElevated, colorTextBase } = useThemeToken();
   const { themeLayout, themeMode } = useSettings();
 

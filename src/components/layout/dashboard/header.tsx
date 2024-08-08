@@ -9,9 +9,9 @@ import { useSettings } from '#wf-local/store/settingStore';
 import { useResponsive, useThemeToken } from '#wf-local/theme/hooks';
 
 import AccountDropdown from '../_common/account-dropdown';
-import BreadCrumb from '../_common/bread-crumb';
+// import BreadCrumb from '../_common/bread-crumb';
 import NoticeButton from '../_common/notice';
-import SearchBar from '../_common/search-bar';
+// import SearchBar from '../_common/search-bar';
 import SettingButton from '../_common/setting-button';
 
 import { NAV_COLLAPSED_WIDTH, NAV_WIDTH, HEADER_HEIGHT, OFFSET_HEADER_HEIGHT } from './config';
@@ -68,17 +68,14 @@ export const Header: React.FC<Props> = ({ className = '', offsetTop = false }: P
             ) : (
               <Logo />
             )}
-            <div className="ml-4 hidden md:block">{breadCrumb ? <BreadCrumb /> : null}</div>
+            {/* <div className="ml-4 hidden md:block">{breadCrumb ? <BreadCrumb /> : null}</div> */}
           </div>
 
           <div className="flex">
-            <SearchBar />
+            {/* <SearchBar /> */}
             <LocalePicker />
-            <IconButton onClick={() => window.open('https://github.com/d3george/slash-admin')}>
+            <IconButton onClick={() => window.open('https://github.com/gotoashishgupta/monitoring-ui')}>
               <Iconify icon="mdi:github" size={24} />
-            </IconButton>
-            <IconButton onClick={() => window.open('https://discord.gg/fXemAXVNDa')}>
-              <Iconify icon="carbon:logo-discord" size={24} />
             </IconButton>
             <NoticeButton />
             <SettingButton />
