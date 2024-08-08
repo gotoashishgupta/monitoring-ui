@@ -81,76 +81,85 @@ async def update_data(request: Request):
 
 @app.get("/nav-menu")
 async def nav_menu():
-    logging.debug("Debug log from the root endpoint")
-    # try:
-    menu = [
-        MenuItem(
-            id=faker.uuid4(),
-            parentId="0",
-            name="Dashboard",
-            label="sys.menu.dashboard",
-            type=MenuType.MENU,
-            route="/dashboard",
-            order=1,
-            icon="ic-analysis",
-        )
-    ]
-
-    # Create a root permission
-    menu = menu + [
-        MenuItem(
-            id=faker.uuid4(),
-            parentId="0",
-            name="ServiceNetwork",
-            label="sys.menu.service_netowrk",
-            type=MenuType.MENU,
-            route="/servicemap",
-            order=2,
-            icon="ic-analysis",
-            newFeature=True,
-        )
-    ]
-
-    more = MenuItem(
-        id=faker.uuid4(),
-        parentId="0",
-        name="More",
-        label="sys.menu.more",
-        type=MenuType.CATALOGUE,
-        route="/m",
-        order=3,
-        icon="ic-analysis",
-    )
-
-    more.children = [
+    try:
+        menu = [
             MenuItem(
                 id=faker.uuid4(),
-                parentId=more.id,
-                name="About",
-                label="sys.menu.about",
+                parentId="0",
+                name="Dashboard",
+                label="sys.menu.dashboard",
                 type=MenuType.MENU,
-                route="/m/about",
+                route="/dashboard",
                 order=1,
                 icon="ic-analysis",
-            ),
-            MenuItem(
-                id=faker.uuid4(),
-                parentId=more.id,
-                name="login",
-                label="sys.menu.login",
-                type=MenuType.MENU,
-                route="/m/login",
-                order=2,
-                icon="ic-analysis",
-            ),
+            )
         ]
 
-    menu.append(more)
-    menu_json = [item.model_dump() for item in menu]
-    return JSONResponse(menu_json)
+        # Create a root permission
+        menu = menu + [
+            MenuItem(
+                id=faker.uuid4(),
+                parentId="0",
+                name="ServiceNetwork",
+                label="sys.menu.service_netowrk",
+                type=MenuType.MENU,
+                route="/servicemap",
+                order=2,
+                icon="ic-analysis",
+                newFeature=True,
+            )
+        ]
 
-    # except Exception as e:
-    #     raise HTTPException(status_code=500, detail=str(e))
+        more = MenuItem(
+            id=faker.uuid4(),
+            parentId="0",
+            name="More",
+            label="sys.menu.more",
+            type=MenuType.CATALOGUE,
+            route="/m",
+            order=3,
+            icon="ic-analysis",
+        )
+
+        more.children = [
+                MenuItem(
+                    id=faker.uuid4(),
+                    parentId=more.id,
+                    name="About",
+                    label="sys.menu.about",
+                    type=MenuType.MENU,
+                    route="/m/about",
+                    order=1,
+                    icon="ic-analysis",
+                ),
+                MenuItem(
+                    id=faker.uuid4(),
+                    parentId=more.id,
+                    name="login",
+                    label="sys.menu.login",
+                    type=MenuType.MENU,
+                    route="/m/login",
+                    order=2,
+                    icon="ic-analysis",
+                ),
+            ]
+
+        menu.append(more)
+        menu_json = [item.model_dump() for item in menu]
+        return JSONResponse(menu_json)
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/servicemap")
+def service_map():
+    try:
+        with open("service-map.json", "r") as json_file:
+            data = json.load(json_file)
+        return JSONResponse(data)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 if __name__ == "__main__":
@@ -159,6 +168,5 @@ if __name__ == "__main__":
     uvicorn.run(
         "app:app",
         host="0.0.0.0",
-        port=8080,
-        reload=True
+        port=8080
     )

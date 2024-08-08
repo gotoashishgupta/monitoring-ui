@@ -1,3 +1,4 @@
+
 export enum BasicStatus {
   DISABLE,
   ENABLE,
@@ -15,7 +16,8 @@ export enum StorageEnum {
   Token = 'token',
   Settings = 'settings',
   I18N = 'i18nextLng',
-  NavMenu = 'navMenu'
+  NavMenu = 'navMenu',
+  ServiceMap = 'serviceMap'
 }
 
 export enum ThemeMode {
