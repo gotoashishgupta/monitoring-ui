@@ -1,7 +1,7 @@
 import React, { useEffect, memo, useMemo, useState } from "react";
-import { setGlobalStore, IGlobalState, ITaskGroup, ITask, IStatus, IFlattenedTask } from "../../store/index";
+import { setGlobalStore, IGlobalState, ITaskGroup, ITask, IStatus, IFlattenedTask } from "#wf-local/store/index";
 import LogItem, { Log } from './LogItem';
-import {getFlattenedTasks} from '../../common/tasks'
+import {getFlattenedTasks} from '#wf-local/common/tasks'
 
 interface IApplicationLogs {
   id: string;

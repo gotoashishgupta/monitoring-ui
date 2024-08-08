@@ -1,127 +1,127 @@
 [
-    {
-       "milestone":"Clone repo",
-       "tasks":[
-          {
-             "output":"sku-classification-service already exists, cloning skipped",
-             "task":"clone",
-             "success":true,
-             "statusString":"in-progress",
-             "errorMessage":null,
-             "statusCode":0,
-             "object":null
-          }
-       ]
-    },
-    {
-       "milestone":"Process buildkite",
-       "tasks":[
-          {
-             "output":"monitoring-ui-monitoring-ai-1  | 11:42:20 AM [vite] hmr update /src/styles/tailwind.css, /src/pages/Home.tsx\nit failed",
-             "task":"Process pipeline script",
-             "success":false,
-             "statusString":"failed",
-             "errorMessage":null,
-             "statusCode":0,
-             "object":null
-          },
-          {
-             "output":"",
-             "task":"Process deploy block yaml",
-             "success":false,
-             "statusString":"failed",
-             "errorMessage":null,
-             "statusCode":0,
-             "object":null
-          },
-          {
-             "output":"",
-             "task":"Process deploy",
-             "success":false,
-             "statusString":"failed",
-             "errorMessage":null,
-             "statusCode":0,
-             "object":null
-          }
-       ]
-    },
-    {
-       "milestone":"Process K8S",
-       "tasks":[
-          {
-             "output":"",
-             "task":"K8S Remove prod sites",
-             "success":false,
-             "statusString":"in-progress",
-             "errorMessage":null,
-             "statusCode":0,
-             "object":null
-          },
-          {
-             "output":"",
-             "task":"K8S process generic rules",
-             "success":false,
-             "statusString":"failed",
-             "errorMessage":null,
-             "statusCode":0,
-             "object":null
-          }
-       ]
-    },
-    {
-       "milestone":"Process language specific",
-       "tasks":[
-          {
-             "output":"",
-             "task":"Process application yaml",
-             "success":false,
-             "statusString":"in-progress",
-             "errorMessage":null,
-             "statusCode":0,
-             "object":null
-          }
-       ]
-    },
-    {
-       "milestone":"Process 1",
-       "tasks":[
-          {
-             "output":"",
-             "task":"Process 1",
-             "success":false,
-             "statusString":"pending",
-             "errorMessage":null,
-             "statusCode":0,
-             "object":null
-          }
-       ]
-    },
-    {
-       "milestone":"Process Skipped",
-       "tasks":[
-          {
-             "output":"",
-             "task":"Process application Process Skipped",
-             "success":false,
-             "statusString":"skipped",
-             "errorMessage":null,
-             "statusCode":0,
-             "object":null
-          }
-       ]
-    },
-    {
-       "milestone":"Process Succeeded",
-       "tasks":[
-          {
-             "output":"",
-             "task":"Process application Process Succeeded",
-             "success":false,
-             "statusString":"completed",
-             "errorMessage":null,
-             "statusCode":0,
-             "object":null
-          }
-       ]
-    }
- ]
+	{
+		"milestone": "Clone repo",
+		"tasks": [
+			{
+				"output": "sku-classification-service already exists, cloning skipped",
+				"task": "clone",
+				"success": true,
+				"statusString": "in-progress",
+				"errorMessage": null,
+				"statusCode": 0,
+				"object": null
+			}
+		]
+	},
+	{
+		"milestone": "Process buildkite",
+		"tasks": [
+			{
+				"output": "monitoring-ui-monitoring-ai-1  | 11:42:20 AM [vite] hmr update /src/styles/tailwind.css, /src/pages/Home.tsx\nit failed",
+				"task": "Process pipeline script",
+				"success": false,
+				"statusString": "failed",
+				"errorMessage": null,
+				"statusCode": 0,
+				"object": null
+			},
+			{
+				"output": "",
+				"task": "Process deploy block yaml",
+				"success": false,
+				"statusString": "failed",
+				"errorMessage": null,
+				"statusCode": 0,
+				"object": null
+			},
+			{
+				"output": "",
+				"task": "Process deploy",
+				"success": false,
+				"statusString": "failed",
+				"errorMessage": null,
+				"statusCode": 0,
+				"object": null
+			}
+		]
+	},
+	{
+		"milestone": "Process K8S",
+		"tasks": [
+			{
+				"output": "",
+				"task": "K8S Remove prod sites",
+				"success": false,
+				"statusString": "in-progress",
+				"errorMessage": null,
+				"statusCode": 0,
+				"object": null
+			},
+			{
+				"output": "",
+				"task": "K8S process generic rules",
+				"success": false,
+				"statusString": "failed",
+				"errorMessage": null,
+				"statusCode": 0,
+				"object": null
+			}
+		]
+	},
+	{
+		"milestone": "Process language specific",
+		"tasks": [
+			{
+				"output": "",
+				"task": "Process application yaml",
+				"success": false,
+				"statusString": "in-progress",
+				"errorMessage": null,
+				"statusCode": 0,
+				"object": null
+			}
+		]
+	},
+	{
+		"milestone": "Process 1",
+		"tasks": [
+			{
+				"output": "",
+				"task": "Process 1",
+				"success": false,
+				"statusString": "pending",
+				"errorMessage": null,
+				"statusCode": 0,
+				"object": null
+			}
+		]
+	},
+	{
+		"milestone": "Process Skipped",
+		"tasks": [
+			{
+				"output": "",
+				"task": "Process application Process Skipped",
+				"success": false,
+				"statusString": "skipped",
+				"errorMessage": null,
+				"statusCode": 0,
+				"object": null
+			}
+		]
+	},
+	{
+		"milestone": "Process Succeeded",
+		"tasks": [
+			{
+				"output": "",
+				"task": "Process application Process Succeeded",
+				"success": false,
+				"statusString": "completed",
+				"errorMessage": null,
+				"statusCode": 0,
+				"object": null
+			}
+		]
+	}
+]

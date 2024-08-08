@@ -1,31 +1,28 @@
-import React, { StrictMode } from 'react'
+import { Suspense } from 'react'
 import ReactDOM from 'react-dom/client'
-// import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { RouterProvider, createRouter } from '@tanstack/react-router'
-// import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-// import { TanStackRouterDevtools } from '@tanstack/router-devtools'
+import { QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+
+import { HelmetProvider } from 'react-helmet-async';
+import {queryClient} from '#wf-local/common/queryClient';
 
 // Import the generated route tree
-import { routeTree } from './routeTree.gen'
-import App from "./App.tsx";
-import "./styles/tailwind.css";
-// Create a new router instance
-const router = createRouter({ routeTree });
-
-// Register the router instance for type safety
-declare module '@tanstack/react-router' {
-  interface Register {
-    router: typeof router
-  }
-}
+import App from "#wf-local/App";
+import './locales/i18n';
+import "./theme/tailwind.css";
 
 // Render the app
 const rootElement = document.getElementById('root')!
 if (!rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement)
   root.render(
-    <StrictMode>
-      <App router={router} />
-    </StrictMode>
+      <HelmetProvider>
+        <QueryClientProvider client={queryClient}>
+          <ReactQueryDevtools initialIsOpen={true} />
+            <Suspense>
+              <App />
+            </Suspense>
+        </QueryClientProvider>
+      </HelmetProvider>
   )
 }

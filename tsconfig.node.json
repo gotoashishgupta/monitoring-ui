@@ -1,10 +1,16 @@
 {
   "compilerOptions": {
+    "jsx": "react-jsx",
     "composite": true,
     "skipLibCheck": true,
     "module": "ESNext",
     "moduleResolution": "bundler",
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "paths": {
+      "#wf-local/*": ["./src/*"],
+      "#wf-types/*": ["./types/*"]
+    }
   },
-  "include": ["vite.config.ts"]
+  "include": ["vite.config.mjs", "src/**/*", "types", "vite.config.mjs", "eslint.config.mts"]
 }
