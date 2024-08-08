@@ -16,13 +16,11 @@ import { Route as rootRoute } from "./routes/__root"
 import { Route as PublicImport } from "./routes/_public"
 import { Route as AuthenticatedImport } from "./routes/_authenticated"
 import { Route as AuthenticatedIndexImport } from "./routes/_authenticated/index"
+import { Route as AuthenticatedServicemapImport } from "./routes/_authenticated/servicemap"
 import { Route as PublicMLoginImport } from "./routes/_public/m.login"
 
 // Create Virtual Routes
 
-const AuthenticatedServicemapLazyImport = createFileRoute(
-  "/_authenticated/servicemap",
-)()
 const AuthenticatedDashboardLazyImport = createFileRoute(
   "/_authenticated/dashboard",
 )()
@@ -49,14 +47,6 @@ const AuthenticatedIndexRoute = AuthenticatedIndexImport.update({
   getParentRoute: () => AuthenticatedRoute,
 } as any)
 
-const AuthenticatedServicemapLazyRoute =
-  AuthenticatedServicemapLazyImport.update({
-    path: "/servicemap",
-    getParentRoute: () => AuthenticatedRoute,
-  } as any).lazy(() =>
-    import("./routes/_authenticated/servicemap.lazy").then((d) => d.Route),
-  )
-
 const AuthenticatedDashboardLazyRoute = AuthenticatedDashboardLazyImport.update(
   {
     path: "/dashboard",
@@ -64,6 +54,13 @@ const AuthenticatedDashboardLazyRoute = AuthenticatedDashboardLazyImport.update(
   } as any,
 ).lazy(() =>
   import("./routes/_authenticated/dashboard.lazy").then((d) => d.Route),
+)
+
+const AuthenticatedServicemapRoute = AuthenticatedServicemapImport.update({
+  path: "/servicemap",
+  getParentRoute: () => AuthenticatedRoute,
+} as any).lazy(() =>
+  import("./routes/_authenticated/servicemap.lazy").then((d) => d.Route),
 )
 
 const AuthenticatedMAboutLazyRoute = AuthenticatedMAboutLazyImport.update({
@@ -98,18 +95,18 @@ declare module "@tanstack/react-router" {
       preLoaderRoute: typeof PublicImport
       parentRoute: typeof rootRoute
     }
+    "/_authenticated/servicemap": {
+      id: "/_authenticated/servicemap"
+      path: "/servicemap"
+      fullPath: "/servicemap"
+      preLoaderRoute: typeof AuthenticatedServicemapImport
+      parentRoute: typeof AuthenticatedImport
+    }
     "/_authenticated/dashboard": {
       id: "/_authenticated/dashboard"
       path: "/dashboard"
       fullPath: "/dashboard"
       preLoaderRoute: typeof AuthenticatedDashboardLazyImport
-      parentRoute: typeof AuthenticatedImport
-    }
-    "/_authenticated/servicemap": {
-      id: "/_authenticated/servicemap"
-      path: "/servicemap"
-      fullPath: "/servicemap"
-      preLoaderRoute: typeof AuthenticatedServicemapLazyImport
       parentRoute: typeof AuthenticatedImport
     }
     "/_authenticated/": {
@@ -140,8 +137,8 @@ declare module "@tanstack/react-router" {
 
 export const routeTree = rootRoute.addChildren({
   AuthenticatedRoute: AuthenticatedRoute.addChildren({
+    AuthenticatedServicemapRoute,
     AuthenticatedDashboardLazyRoute,
-    AuthenticatedServicemapLazyRoute,
     AuthenticatedIndexRoute,
     AuthenticatedMAboutLazyRoute,
   }),
@@ -163,8 +160,8 @@ export const routeTree = rootRoute.addChildren({
     "/_authenticated": {
       "filePath": "_authenticated.tsx",
       "children": [
-        "/_authenticated/dashboard",
         "/_authenticated/servicemap",
+        "/_authenticated/dashboard",
         "/_authenticated/",
         "/_authenticated/m/about"
       ]
@@ -175,12 +172,12 @@ export const routeTree = rootRoute.addChildren({
         "/_public/m/login"
       ]
     },
-    "/_authenticated/dashboard": {
-      "filePath": "_authenticated/dashboard.lazy.tsx",
+    "/_authenticated/servicemap": {
+      "filePath": "_authenticated/servicemap.tsx",
       "parent": "/_authenticated"
     },
-    "/_authenticated/servicemap": {
-      "filePath": "_authenticated/servicemap.lazy.tsx",
+    "/_authenticated/dashboard": {
+      "filePath": "_authenticated/dashboard.lazy.tsx",
       "parent": "/_authenticated"
     },
     "/_authenticated/": {

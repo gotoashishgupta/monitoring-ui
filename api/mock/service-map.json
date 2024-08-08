@@ -1,0 +1,1221 @@
+{
+  "edges" : [ {
+    "source" : "e2e-enrichment-service-api",
+    "target" : "e2e-enrichment-service-api-sql-server"
+  }, {
+    "source" : "sccontentcreationclassing",
+    "target" : "e2e-catman-adhoc-service"
+  }, {
+    "source" : "supplier-synchroniser-service-subgraph",
+    "target" : "postgresql"
+  }, {
+    "source" : "supplier-synchroniser-service-subgraph",
+    "target" : "redis"
+  }, {
+    "source" : "ph-core-navigation-service",
+    "target" : "supplier-profile-service"
+  }, {
+    "source" : "ph-core-navigation-service",
+    "target" : "aerospike"
+  }, {
+    "source" : "e2e-su-diy-submission-scoring",
+    "target" : "pdo"
+  }, {
+    "source" : "e2e-compliance-rule-execution-customs",
+    "target" : "general-feature-toggles-edge"
+  }, {
+    "source" : "e2e-product-class-service",
+    "target" : "sqlserver"
+  }, {
+    "source" : "e2e-product-class-service",
+    "target" : "auth-identity"
+  }, {
+    "source" : "e2e-so-order-data-fetch-api",
+    "target" : "e2e-permissions-service"
+  }, {
+    "source" : "e2e-so-order-data-fetch-api",
+    "target" : "auth-identity"
+  }, {
+    "source" : "e2e-sc-media-service",
+    "target" : "e2e-cmedia-mats-api"
+  }, {
+    "source" : "e2e-sc-media-service",
+    "target" : "requests"
+  }, {
+    "source" : "e2e-sc-media-service",
+    "target" : "e2e-mats"
+  }, {
+    "source" : "e2e-sc-media-service",
+    "target" : "postgres"
+  }, {
+    "source" : "e2e-sc-media-service",
+    "target" : "auth-identity"
+  }, {
+    "source" : "e2e-config-engine-service",
+    "target" : "general-feature-toggles"
+  }, {
+    "source" : "e2e-config-engine-service",
+    "target" : "permissions-service"
+  }, {
+    "source" : "e2e-config-engine-service",
+    "target" : "auth-identity"
+  }, {
+    "source" : "e2e-product-addition-staging",
+    "target" : "e2e-catman-adhoc-service"
+  }, {
+    "source" : "e2e-product-addition-staging",
+    "target" : "product-addition-staging"
+  }, {
+    "source" : "e2e-product-addition-staging",
+    "target" : "postgres"
+  }, {
+    "source" : "e2e-ph-user-profile",
+    "target" : "e2e-simple-purest"
+  }, {
+    "source" : "e2e-ph-user-profile",
+    "target" : "sqlserver"
+  }, {
+    "source" : "e2e-ph-user-profile",
+    "target" : "e2e-supplier-profile-service"
+  }, {
+    "source" : "e2e-ph-user-profile",
+    "target" : "permissions-service"
+  }, {
+    "source" : "e2e-aggregate-class-question-graphql",
+    "target" : "aerospike"
+  }, {
+    "source" : "e2e-aggregate-class-question-graphql",
+    "target" : "auth-identity"
+  }, {
+    "source" : "e2e-barrier-platform-service",
+    "target" : "postgresql"
+  }, {
+    "source" : "e2e-barrier-platform-service",
+    "target" : "general-feature-toggles"
+  }, {
+    "source" : "e2e-catman-spec-sheet-services",
+    "target" : "e2e-sc-media-service"
+  }, {
+    "source" : "e2e-catman-spec-sheet-services",
+    "target" : "kafka"
+  }, {
+    "source" : "e2e-catman-spec-sheet-services",
+    "target" : "requests"
+  }, {
+    "source" : "e2e-catman-spec-sheet-services",
+    "target" : "postgres"
+  }, {
+    "source" : "e2e-compliance-rule-execution",
+    "target" : "general-feature-toggles-edge"
+  }, {
+    "source" : "user-authorization-service",
+    "target" : "aerospike"
+  }, {
+    "source" : "e2e-conditionality-data-svc-cache-warmer",
+    "target" : "e2e-product-class-service"
+  }, {
+    "source" : "e2e-conditionality-data-svc-cache-warmer",
+    "target" : "auth-identity"
+  }, {
+    "source" : "e2e-ph-payment-terms-adapter",
+    "target" : "general-feature-toggles"
+  }, {
+    "source" : "e2e-catalog-import-service",
+    "target" : "permissions-service"
+  }, {
+    "source" : "e2e-catalog-import-service",
+    "target" : "auth-identity"
+  }, {
+    "source" : "e2e-catman-spec-sheet-services-event-handlers",
+    "target" : "kafka"
+  }, {
+    "source" : "supplier-synchroniser-service-consumer",
+    "target" : "postgresql"
+  }, {
+    "source" : "supplier-synchroniser-service-consumer",
+    "target" : "kafka"
+  }, {
+    "source" : "supplier-synchroniser-service-consumer",
+    "target" : "partner-account-service"
+  }, {
+    "source" : "supplier-synchroniser-service-consumer",
+    "target" : "ph-supplier-creation-service"
+  }, {
+    "source" : "supplier-synchroniser-service-consumer",
+    "target" : "gstdea-partner-account-data"
+  }, {
+    "source" : "supplier-synchroniser-service-consumer",
+    "target" : "redis"
+  }, {
+    "source" : "supplier-synchroniser-service-consumer",
+    "target" : "ph-user-profile"
+  }, {
+    "source" : "e2e-compliance-rule-execution-multi-1",
+    "target" : "general-feature-toggles-edge"
+  }, {
+    "source" : "catalog-partdata-subgraph-api",
+    "target" : "sqlserver"
+  }, {
+    "source" : "catalog-partdata-subgraph-api",
+    "target" : "aerospike"
+  }, {
+    "source" : "e2e-catman-spec-sheet-services-spec-sheet-parser",
+    "target" : "e2e-product-addition-staging"
+  }, {
+    "source" : "e2e-catman-spec-sheet-services-spec-sheet-parser",
+    "target" : "e2e-catman-domain-service-gateway"
+  }, {
+    "source" : "e2e-catman-spec-sheet-services-spec-sheet-parser",
+    "target" : "kafka"
+  }, {
+    "source" : "e2e-catman-spec-sheet-services-spec-sheet-parser",
+    "target" : "requests"
+  }, {
+    "source" : "e2e-catman-spec-sheet-services-spec-sheet-parser",
+    "target" : "e2e-supplier-profile-service"
+  }, {
+    "source" : "e2e-catman-spec-sheet-services-spec-sheet-parser",
+    "target" : "postgres"
+  }, {
+    "source" : "product-addition-staging",
+    "target" : "requests"
+  }, {
+    "source" : "e2e-catman-domain-service-gateway",
+    "target" : "e2e-sc-media-service"
+  }, {
+    "source" : "e2e-catman-domain-service-gateway",
+    "target" : "e2e-product-addition-staging"
+  }, {
+    "source" : "e2e-catman-domain-service-gateway",
+    "target" : "e2e-catalogcreationcsd"
+  }, {
+    "source" : "e2e-catman-domain-service-gateway",
+    "target" : "e2e-sccontentcreationclassing"
+  }, {
+    "source" : "e2e-catman-domain-service-gateway",
+    "target" : "auth-identity"
+  }, {
+    "source" : "e2e-catman-adhoc-service",
+    "target" : "pyodbc"
+  }, {
+    "source" : "e2e-catman-adhoc-service",
+    "target" : "requests"
+  }, {
+    "source" : "e2e-catman-adhoc-service",
+    "target" : "graphql-router-service-to-service"
+  }, {
+    "source" : "e2e-catman-adhoc-service",
+    "target" : "mssql"
+  }, {
+    "source" : "e2e-product-name-service",
+    "target" : "permissions-service"
+  }, {
+    "source" : "e2e-product-name-service",
+    "target" : "auth-identity"
+  }, {
+    "source" : "e2e-enrichment-service-validated-answers",
+    "target" : "e2e-enrichment-service-validated-answers-http-client"
+  }, {
+    "source" : "e2e-enrichment-service-excel-api",
+    "target" : "e2e-enrichment-service-excel-api-http-client"
+  }, {
+    "source" : "e2e-enrichment-service-excel-api",
+    "target" : "e2e-enrichment-service-excel-api-sql-server"
+  }, {
+    "source" : "e2e-sku-generation",
+    "target" : "e2e-catalog-partdata-write-service"
+  }, {
+    "source" : "e2e-sku-generation",
+    "target" : "postgresql"
+  }, {
+    "source" : "e2e-sku-generation",
+    "target" : "sqlserver"
+  }, {
+    "source" : "e2e-sku-generation",
+    "target" : "unleash-proxy"
+  }, {
+    "source" : "e2e-sku-generation",
+    "target" : "kafka"
+  }, {
+    "source" : "e2e-sku-generation",
+    "target" : "graphql-router-chaos-service-to-service"
+  }, {
+    "source" : "e2e-sku-generation",
+    "target" : "e2e-product-generation-worker"
+  }, {
+    "source" : "e2e-sku-generation",
+    "target" : "auth-identity"
+  }, {
+    "source" : "e2e-ph-returns-config-service",
+    "target" : "permissions-service"
+  }, {
+    "source" : "e2e-ph-returns-config-service",
+    "target" : "auth-identity"
+  }, {
+    "source" : "e2e-taxonomy-service-validation",
+    "target" : "e2e-taxonomy-service-validation-aerospike"
+  }, {
+    "source" : "graphql-router-chaos-service-to-service",
+    "target" : "graphql-router-chaos-service-to-service"
+  }, {
+    "source" : "graphql-router-service-to-service",
+    "target" : "graphql-router-service-to-service"
+  }, {
+    "source" : "apollo-gateway-supplier",
+    "target" : "apollo-gateway-supplier-http-client"
+  }, {
+    "source" : "apollo-gateway-supplier",
+    "target" : "apollo-gateway-supplier-graphql"
+  }, {
+    "source" : "e2e-product-generation-worker",
+    "target" : "e2e-product-generation-worker-kafka"
+  }, {
+    "source" : "e2e-product-generation-worker",
+    "target" : "e2e-product-generation-worker-aerospike"
+  }, {
+    "source" : "e2e-taxonomy-service-questions-api",
+    "target" : "e2e-taxonomy-service-questions-api-aerospike"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-enrichment-service-api"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-supplier-catalog-product-content-service"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-taxonomy-autofill-service"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-mds-part-notif-consumer"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-catman-product-validation-service"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-supplier-defined-region-service"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-product-catalog-jobs-catalog-foundations"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-permissions-synchroniser-service"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-compliance-rule-execution-customs"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-product-catalog-jobs-carton-dimensions"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-adf-clear-qa-service"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-legacy-supplier-entities-adapter"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-product-class-service"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-so-order-data-fetch-api"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-mds-genericfl-consumer"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-product-addition-staging"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-config-engine-service"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-taxonomy-service-validation-cache"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-ph-user-profile"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-barrier-platform-service"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-sm-one-media-api"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-conditionality-data-svc-cache-warmer"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-ph-payment-terms-adapter"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-supplier-synchroniser"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-catalog-creation-background-jobs"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-catalog-import-service"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-cmedia-ingestion-asset-details-api"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-fulfillment-config-service"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-sm-action-manager-service"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-supplier-catalog-product-addition"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-compliance-rule-execution-multi-1"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-ph-reports-download-feature-toggles-proxy"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-wam-association-api"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-catalog-service-merch-api"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-sku-classification-service"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-merch-schema-conditionality-api"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-dimensions-outlier-detection-service"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-mds-mats-metadata-post-processor"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-ph-configs-legacy-adapter"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-localization-brand-catalog-resolver"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-legacy-product-entities-adapter"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-enrichment-service-validated-answers"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-enrichment-async-background-jobs"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-sku-generation"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-catalog-import-service-notifications"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-ph-user-identity-service"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-permissions-service"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-mds-enh-consumer"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-product-generation-worker"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-ph-export-service"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-catalog-composites-relationship-api"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-catalog-update-api"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-product-catalog-service"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-catalog-service-controlcenter"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-mds-backfill-endpoints"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-catman-product-submission-service"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-merch-discovery-service"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-user-authorization-service"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-generic-answer-graphql"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-catalog-creation-service-api"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-product-generation-api"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-ph-castlegate-markdowns"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-supplier-offers-catalog-service"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-simple-purest"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-schema-question-and-answer-service"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-catman-feature-description-service"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-cmedia-distribute-api"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-supplier-profile-service"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-product-generation-creation-worker"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-catalog-partdata-write-service"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-compliance-rule-execution-dresser-stability"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-supplier-creation-service"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-compliance-rule-execution-multimedia-ai"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-class-question-cache-warmer"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-product-carton-service"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-supplier-identity-access-management"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-generic-answer-subgraph"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-mds-reprocess-consumer"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-cost-service-cache-healer"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-sccontentcreationclassing"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-permissions-jazz-provider"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-eden-reader-service"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-warehouse-creation"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "auth-provider-service"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-display-sku-service"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-so-order-export-orchestrator"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-precheck-projectbundler-rulesengine"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-su-diy-submission-scoring"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-cfe-dorja"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-sm-action-manager"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-catalog-gateway-sku-mapper"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-sc-media-service"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-dimension-checker-business-layer"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-product-catalog-jobs-purchasability-and-legal"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-catman-shipping-fulfillment-service"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-schema-tag-rank-and-group-service"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-aggregate-class-question-graphql"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-catman-spec-sheet-services"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-compliance-rule-execution"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-supplier-request-service"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-description-validation-service"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "ph.monolith"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-catman-spec-sheet-services-event-handlers"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-carton-dimensions-gateway"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-ph-supplier-sales"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-monkey-service"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-mds-generic-consumer"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-catalogcreationcsd"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-catman-domain-service-gateway"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-ph-ui-product-management"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-product-name-service"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-catman-adhoc-service"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-enrichment-service-excel-api"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-php-services"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-ph-returns-config-service"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-taxonomy-service-validation"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-catalog-material-service"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-taxonomy-service-questions-api"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-partner-marketplace-service"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-supplier-product-cost"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-cost-service-api"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-conditionality-data-service"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-partner-orchestrator-service"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-legacy-supplier-entities-adapter-subgraph"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-ph-payments-and-terms-fsm"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-ph-layout-remote"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-compliance-rule-manager"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-supplier-dropship-offer-service"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-catalog-creation-adhoc-services"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-partner-offer-service-stub"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-i18n-platform"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-descriptions-adf-prod-answers-api"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-compliance-restrictions"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-global-generic-answer-kafka"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-class-metadata-service-graphql"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-agreements-service"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-partner-account-service"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-mock-services"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-cmedia-association-api"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-generic-answer-kafka"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-generic-answer-service"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-class-question-change-consumer"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-cmedia-mats-api"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-ph-ui-product-details"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-product-catalog-jobs-supplier-catalog"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-precheck-projectbundler-output"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-precheck-projectbundler-api"
+  }, {
+    "source" : "e2e-tools",
+    "target" : "e2e-mats"
+  }, {
+    "source" : "supplier-profile-service",
+    "target" : "sqlserver"
+  }, {
+    "source" : "e2e-catman-spec-sheet-services-summary-generator",
+    "target" : "kafka"
+  }, {
+    "source" : "e2e-conditionality-data-service",
+    "target" : "e2e-aggregate-class-question-graphql"
+  }, {
+    "source" : "e2e-conditionality-data-service",
+    "target" : "aerospike"
+  }, {
+    "source" : "e2e-conditionality-data-service",
+    "target" : "auth-identity"
+  }, {
+    "source" : "ph-supplier-creation-service",
+    "target" : "sqlserver"
+  }, {
+    "source" : "ph-supplier-creation-service",
+    "target" : "kafka"
+  }, {
+    "source" : "e2e-ph-payments-and-terms-fsm",
+    "target" : "general-feature-toggles"
+  }, {
+    "source" : "partner-account-service-subgraph",
+    "target" : "postgresql"
+  }, {
+    "source" : "partner-account-service-subgraph",
+    "target" : "redis"
+  }, {
+    "source" : "e2e-i18n-platform",
+    "target" : "postgresql"
+  }, {
+    "source" : "e2e-descriptions-adf-prod-answers-api",
+    "target" : "e2e-descriptions-adf-prod-answers-api-sql-server"
+  }, {
+    "source" : "e2e-ph-core-navigation-service",
+    "target" : "e2e-ph-user-profile"
+  }, {
+    "source" : "e2e-ph-core-navigation-service",
+    "target" : "aerospike"
+  }, {
+    "source" : "e2e-ph-core-navigation-service",
+    "target" : "e2e-supplier-profile-service"
+  }, {
+    "source" : "e2e-supplier-profile-service",
+    "target" : "sqlserver"
+  }, {
+    "source" : "e2e-catalog-partdata-write-service",
+    "target" : "requests"
+  }, {
+    "source" : "e2e-catalog-partdata-write-service",
+    "target" : "postgres"
+  }, {
+    "source" : "e2e-compliance-rule-execution-dresser-stability",
+    "target" : "general-feature-toggles-edge"
+  }, {
+    "source" : "e2e-partner-account-service",
+    "target" : "general-feature-toggles"
+  }, {
+    "source" : "e2e-partner-account-service",
+    "target" : "permissions-service"
+  }, {
+    "source" : "e2e-partner-account-service",
+    "target" : "auth-identity"
+  }, {
+    "source" : "taxonomy-service-questions-api",
+    "target" : "taxonomy-service-questions-api-aerospike"
+  }, {
+    "source" : "e2e-compliance-rule-execution-multimedia-ai",
+    "target" : "general-feature-toggles-edge"
+  }, {
+    "source" : "partner-account-service",
+    "target" : "postgresql"
+  }, {
+    "source" : "partner-account-service",
+    "target" : "user-authorization-service"
+  }, {
+    "source" : "partner-account-service",
+    "target" : "redis"
+  }, {
+    "source" : "e2e-sccontentcreationclassing",
+    "target" : "e2e-catman-adhoc-service"
+  }, {
+    "source" : "e2e-sccontentcreationclassing",
+    "target" : "sccontentcreationclassing"
+  }, {
+    "source" : "e2e-sccontentcreationclassing",
+    "target" : "requests"
+  }, {
+    "source" : "e2e-sccontentcreationclassing",
+    "target" : "postgres"
+  }, {
+    "source" : "auth-identity",
+    "target" : "auth-identity-sql-server"
+  }, {
+    "source" : "ph-user-profile",
+    "target" : "sqlserver"
+  } ],
+  "nodes" : [ {
+    "service" : "e2e-enrichment-service-api"
+  }, {
+    "service" : "e2e-enrichment-service-api-sql-server"
+  }, {
+    "service" : "e2e-eden-reader-service"
+  }, {
+    "service" : "e2e-supplier-catalog-product-content-service"
+  }, {
+    "service" : "sccontentcreationclassing"
+  }, {
+    "service" : "e2e-catman-adhoc-service"
+  }, {
+    "service" : "e2e-new-product-creation-dlq-service"
+  }, {
+    "service" : "supplier-synchroniser-service-subgraph"
+  }, {
+    "service" : "postgresql"
+  }, {
+    "service" : "redis"
+  }, {
+    "service" : "ph-core-navigation-service"
+  }, {
+    "service" : "supplier-profile-service"
+  }, {
+    "service" : "aerospike"
+  }, {
+    "service" : "e2e-su-diy-submission-scoring"
+  }, {
+    "service" : "pdo"
+  }, {
+    "service" : "e2e-compliance-rule-execution-customs"
+  }, {
+    "service" : "general-feature-toggles-edge"
+  }, {
+    "service" : "e2e-sm-action-manager"
+  }, {
+    "service" : "e2e-catman-spec-sheet-services-workbook-tracker"
+  }, {
+    "service" : "e2e-product-class-service"
+  }, {
+    "service" : "sqlserver"
+  }, {
+    "service" : "auth-identity"
+  }, {
+    "service" : "e2e-catalog-gateway-sku-mapper"
+  }, {
+    "service" : "e2e-so-order-data-fetch-api"
+  }, {
+    "service" : "e2e-permissions-service"
+  }, {
+    "service" : "e2e-sc-media-service"
+  }, {
+    "service" : "e2e-cmedia-mats-api"
+  }, {
+    "service" : "requests"
+  }, {
+    "service" : "e2e-mats"
+  }, {
+    "service" : "postgres"
+  }, {
+    "service" : "e2e-config-engine-service"
+  }, {
+    "service" : "general-feature-toggles"
+  }, {
+    "service" : "permissions-service"
+  }, {
+    "service" : "e2e-product-addition-staging"
+  }, {
+    "service" : "product-addition-staging"
+  }, {
+    "service" : "e2e-ph-user-profile"
+  }, {
+    "service" : "e2e-simple-purest"
+  }, {
+    "service" : "e2e-supplier-profile-service"
+  }, {
+    "service" : "e2e-aggregate-class-question-graphql"
+  }, {
+    "service" : "e2e-barrier-platform-service"
+  }, {
+    "service" : "e2e-catman-spec-sheet-services"
+  }, {
+    "service" : "kafka"
+  }, {
+    "service" : "e2e-compliance-rule-execution"
+  }, {
+    "service" : "user-authorization-service"
+  }, {
+    "service" : "e2e-conditionality-data-svc-cache-warmer"
+  }, {
+    "service" : "e2e-ph-payment-terms-adapter"
+  }, {
+    "service" : "e2e-catalog-creation-background-jobs"
+  }, {
+    "service" : "e2e-catalog-import-service"
+  }, {
+    "service" : "e2e-catman-spec-sheet-services-event-handlers"
+  }, {
+    "service" : "e2e-cmedia-ingestion-asset-details-api"
+  }, {
+    "service" : "supplier-synchroniser-service-consumer"
+  }, {
+    "service" : "partner-account-service"
+  }, {
+    "service" : "ph-supplier-creation-service"
+  }, {
+    "service" : "gstdea-partner-account-data"
+  }, {
+    "service" : "ph-user-profile"
+  }, {
+    "service" : "e2e-compliance-rule-execution-multi-1"
+  }, {
+    "service" : "catalog-partdata-subgraph-api"
+  }, {
+    "service" : "e2e-catman-spec-sheet-services-spec-sheet-parser"
+  }, {
+    "service" : "e2e-catman-domain-service-gateway"
+  }, {
+    "service" : "e2e-catalogcreationcsd"
+  }, {
+    "service" : "e2e-sccontentcreationclassing"
+  }, {
+    "service" : "pyodbc"
+  }, {
+    "service" : "graphql-router-service-to-service"
+  }, {
+    "service" : "mssql"
+  }, {
+    "service" : "e2e-product-name-service"
+  }, {
+    "service" : "e2e-enrichment-service-validated-answers"
+  }, {
+    "service" : "e2e-enrichment-service-validated-answers-http-client"
+  }, {
+    "service" : "e2e-enrichment-service-excel-api"
+  }, {
+    "service" : "e2e-enrichment-service-excel-api-http-client"
+  }, {
+    "service" : "e2e-enrichment-service-excel-api-sql-server"
+  }, {
+    "service" : "e2e-sku-generation"
+  }, {
+    "service" : "e2e-catalog-partdata-write-service"
+  }, {
+    "service" : "unleash-proxy"
+  }, {
+    "service" : "graphql-router-chaos-service-to-service"
+  }, {
+    "service" : "e2e-product-generation-worker"
+  }, {
+    "service" : "e2e-ph-returns-config-service"
+  }, {
+    "service" : "e2e-taxonomy-service-validation"
+  }, {
+    "service" : "e2e-taxonomy-service-validation-aerospike"
+  }, {
+    "service" : "apollo-gateway-supplier"
+  }, {
+    "service" : "apollo-gateway-supplier-http-client"
+  }, {
+    "service" : "apollo-gateway-supplier-graphql"
+  }, {
+    "service" : "e2e-product-generation-worker-kafka"
+  }, {
+    "service" : "e2e-product-generation-worker-aerospike"
+  }, {
+    "service" : "e2e-taxonomy-service-questions-api"
+  }, {
+    "service" : "e2e-taxonomy-service-questions-api-aerospike"
+  }, {
+    "service" : "e2e-tools"
+  }, {
+    "service" : "e2e-taxonomy-autofill-service"
+  }, {
+    "service" : "e2e-mds-part-notif-consumer"
+  }, {
+    "service" : "e2e-catman-product-validation-service"
+  }, {
+    "service" : "e2e-supplier-defined-region-service"
+  }, {
+    "service" : "e2e-product-catalog-jobs-catalog-foundations"
+  }, {
+    "service" : "e2e-permissions-synchroniser-service"
+  }, {
+    "service" : "e2e-product-catalog-jobs-carton-dimensions"
+  }, {
+    "service" : "e2e-adf-clear-qa-service"
+  }, {
+    "service" : "e2e-legacy-supplier-entities-adapter"
+  }, {
+    "service" : "e2e-mds-genericfl-consumer"
+  }, {
+    "service" : "e2e-taxonomy-service-validation-cache"
+  }, {
+    "service" : "e2e-sm-one-media-api"
+  }, {
+    "service" : "e2e-supplier-synchroniser"
+  }, {
+    "service" : "e2e-fulfillment-config-service"
+  }, {
+    "service" : "e2e-sm-action-manager-service"
+  }, {
+    "service" : "e2e-supplier-catalog-product-addition"
+  }, {
+    "service" : "e2e-ph-reports-download-feature-toggles-proxy"
+  }, {
+    "service" : "e2e-wam-association-api"
+  }, {
+    "service" : "e2e-catalog-service-merch-api"
+  }, {
+    "service" : "e2e-sku-classification-service"
+  }, {
+    "service" : "e2e-merch-schema-conditionality-api"
+  }, {
+    "service" : "e2e-dimensions-outlier-detection-service"
+  }, {
+    "service" : "e2e-mds-mats-metadata-post-processor"
+  }, {
+    "service" : "e2e-ph-configs-legacy-adapter"
+  }, {
+    "service" : "e2e-localization-brand-catalog-resolver"
+  }, {
+    "service" : "e2e-legacy-product-entities-adapter"
+  }, {
+    "service" : "e2e-enrichment-async-background-jobs"
+  }, {
+    "service" : "e2e-catalog-import-service-notifications"
+  }, {
+    "service" : "e2e-ph-user-identity-service"
+  }, {
+    "service" : "e2e-mds-enh-consumer"
+  }, {
+    "service" : "e2e-ph-export-service"
+  }, {
+    "service" : "e2e-catalog-composites-relationship-api"
+  }, {
+    "service" : "e2e-catalog-update-api"
+  }, {
+    "service" : "e2e-product-catalog-service"
+  }, {
+    "service" : "e2e-catalog-service-controlcenter"
+  }, {
+    "service" : "e2e-mds-backfill-endpoints"
+  }, {
+    "service" : "e2e-catman-product-submission-service"
+  }, {
+    "service" : "e2e-merch-discovery-service"
+  }, {
+    "service" : "e2e-user-authorization-service"
+  }, {
+    "service" : "e2e-generic-answer-graphql"
+  }, {
+    "service" : "e2e-catalog-creation-service-api"
+  }, {
+    "service" : "e2e-product-generation-api"
+  }, {
+    "service" : "e2e-ph-castlegate-markdowns"
+  }, {
+    "service" : "e2e-supplier-offers-catalog-service"
+  }, {
+    "service" : "e2e-schema-question-and-answer-service"
+  }, {
+    "service" : "e2e-catman-feature-description-service"
+  }, {
+    "service" : "e2e-cmedia-distribute-api"
+  }, {
+    "service" : "e2e-product-generation-creation-worker"
+  }, {
+    "service" : "e2e-compliance-rule-execution-dresser-stability"
+  }, {
+    "service" : "e2e-supplier-creation-service"
+  }, {
+    "service" : "e2e-compliance-rule-execution-multimedia-ai"
+  }, {
+    "service" : "e2e-class-question-cache-warmer"
+  }, {
+    "service" : "e2e-product-carton-service"
+  }, {
+    "service" : "e2e-supplier-identity-access-management"
+  }, {
+    "service" : "e2e-generic-answer-subgraph"
+  }, {
+    "service" : "e2e-mds-reprocess-consumer"
+  }, {
+    "service" : "e2e-cost-service-cache-healer"
+  }, {
+    "service" : "e2e-permissions-jazz-provider"
+  }, {
+    "service" : "e2e-warehouse-creation"
+  }, {
+    "service" : "auth-provider-service"
+  }, {
+    "service" : "e2e-display-sku-service"
+  }, {
+    "service" : "e2e-so-order-export-orchestrator"
+  }, {
+    "service" : "e2e-precheck-projectbundler-rulesengine"
+  }, {
+    "service" : "e2e-cfe-dorja"
+  }, {
+    "service" : "e2e-dimension-checker-business-layer"
+  }, {
+    "service" : "e2e-product-catalog-jobs-purchasability-and-legal"
+  }, {
+    "service" : "e2e-catman-shipping-fulfillment-service"
+  }, {
+    "service" : "e2e-schema-tag-rank-and-group-service"
+  }, {
+    "service" : "e2e-supplier-request-service"
+  }, {
+    "service" : "e2e-description-validation-service"
+  }, {
+    "service" : "ph.monolith"
+  }, {
+    "service" : "e2e-carton-dimensions-gateway"
+  }, {
+    "service" : "e2e-ph-supplier-sales"
+  }, {
+    "service" : "e2e-monkey-service"
+  }, {
+    "service" : "e2e-mds-generic-consumer"
+  }, {
+    "service" : "e2e-ph-ui-product-management"
+  }, {
+    "service" : "e2e-php-services"
+  }, {
+    "service" : "e2e-catalog-material-service"
+  }, {
+    "service" : "e2e-partner-marketplace-service"
+  }, {
+    "service" : "e2e-supplier-product-cost"
+  }, {
+    "service" : "e2e-cost-service-api"
+  }, {
+    "service" : "e2e-conditionality-data-service"
+  }, {
+    "service" : "e2e-partner-orchestrator-service"
+  }, {
+    "service" : "e2e-legacy-supplier-entities-adapter-subgraph"
+  }, {
+    "service" : "e2e-ph-payments-and-terms-fsm"
+  }, {
+    "service" : "e2e-ph-layout-remote"
+  }, {
+    "service" : "e2e-compliance-rule-manager"
+  }, {
+    "service" : "e2e-supplier-dropship-offer-service"
+  }, {
+    "service" : "e2e-catalog-creation-adhoc-services"
+  }, {
+    "service" : "e2e-partner-offer-service-stub"
+  }, {
+    "service" : "e2e-i18n-platform"
+  }, {
+    "service" : "e2e-descriptions-adf-prod-answers-api"
+  }, {
+    "service" : "e2e-compliance-restrictions"
+  }, {
+    "service" : "e2e-global-generic-answer-kafka"
+  }, {
+    "service" : "e2e-class-metadata-service-graphql"
+  }, {
+    "service" : "e2e-agreements-service"
+  }, {
+    "service" : "e2e-partner-account-service"
+  }, {
+    "service" : "e2e-mock-services"
+  }, {
+    "service" : "e2e-cmedia-association-api"
+  }, {
+    "service" : "e2e-generic-answer-kafka"
+  }, {
+    "service" : "e2e-generic-answer-service"
+  }, {
+    "service" : "e2e-class-question-change-consumer"
+  }, {
+    "service" : "e2e-ph-ui-product-details"
+  }, {
+    "service" : "e2e-product-catalog-jobs-supplier-catalog"
+  }, {
+    "service" : "e2e-precheck-projectbundler-output"
+  }, {
+    "service" : "e2e-precheck-projectbundler-api"
+  }, {
+    "service" : "e2e-catman-spec-sheet-services-summary-generator"
+  }, {
+    "service" : "partner-account-service-subgraph"
+  }, {
+    "service" : "e2e-descriptions-adf-prod-answers-api-sql-server"
+  }, {
+    "service" : "e2e-ph-core-navigation-service"
+  }, {
+    "service" : "taxonomy-service-questions-api"
+  }, {
+    "service" : "taxonomy-service-questions-api-aerospike"
+  }, {
+    "service" : "auth-identity-sql-server"
+  } ]
+}
