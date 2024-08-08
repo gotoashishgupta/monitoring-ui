@@ -1,5 +1,5 @@
 import React, { useEffect, memo, useMemo, useState } from "react";
-import { setGlobalStore, IGlobalState, ITaskGroup, ITask, IStatus } from "../../store/index";
+import { setGlobalStore, IGlobalState, ITaskGroup, ITask, IStatus } from "#wf-local/store/index";
 import Loading from "./Loading";
 
 export interface IMilestone {
@@ -16,7 +16,7 @@ const initialMilestones: IMilestone[] = [
 ];
 
 const getStatusClass = (status: string) => {
-  const statusClasses: { [key: string]: string } = {
+  const statusClasses: Record<string, string> = {
     "Completed": "bg-green-600",
     "In Progress": "border-4 border-t-4 border-t-transparent border-blue-600 animate-spin",
     "In Progress (with Errors)": "border-4 border-t-4 border-t-transparent border-orange-600 animate-spin",

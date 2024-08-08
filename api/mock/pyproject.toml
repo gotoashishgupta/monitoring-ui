@@ -8,11 +8,16 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.10"
-flask = "^2.0.2"
-flask-cors = "^3.0.10"
+fastapi = "^0.112.0"
+uvicorn = {extras = ["standard"], version = "^0.30.5"}
+pydantic = "^2.8.2"
+gunicorn = "^22.0.0"
+autoreload = "^0.1.2"
+python-multipart = "^0.0.9"
+faker = "^26.2.0"
 
-# poetry add --group dev black mypy mkdocs flake8 bandit
 [tool.poetry.group.dev.dependencies]
+# poetry add --group dev black mypy mkdocs flake8 bandit
 black = "^23.12.1"
 mypy = "^1.8.0"
 mkdocs = "^1.5.3"

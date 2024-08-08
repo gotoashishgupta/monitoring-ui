@@ -15,9 +15,9 @@ services:
 
   api.mock:
     ports:
-      - "5000:5000"
+      - "8080:8080"
     image: wayfair/api.mock
-    command: ["conda", "run", "--no-capture-output", "-n", "api.mock", "poetry", "run", "python", "app.py"]
+    command: ["conda", "run", "--no-capture-output", "-n", "api.mock", "poetry", "run", "gunicorn", "-w", "4", "-k", "uvicorn.workers.UvicornWorker", "app:app", "--bind", "0.0.0.0:8080", "--reload"]
     build:
       dockerfile: Dockerfile
       context: ./api/mock
@@ -43,6 +43,7 @@ services:
       - NODE_ENV=development
       - CHOKIDAR_USEPOLLING=true
       - VITE_API_URL=http://localhost:8080
+      - VITE_APP_HOMEPAGE="/"
     volumes:
       - node_modules:/app/node_modules
       - "./:/app"

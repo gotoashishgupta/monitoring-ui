@@ -1,4 +1,9 @@
-import { IFlattenedTask, IStatus, ITask, ITaskGroup } from "../store/index";
+import {
+	IFlattenedTask,
+	IStatus,
+	ITask,
+	ITaskGroup,
+} from "#wf-local/store/index";
 export const getFlattenedTasks = (
 	service: string | undefined,
 	status: IStatus = {}

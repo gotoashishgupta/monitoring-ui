@@ -7,7 +7,8 @@ channels:
 dependencies:
   - python=3.10
   - pip
-  - poetry
+  - pip:
+    - poetry
 variables:
   GRPC_PYTHON_BUILD_SYSTEM_OPENSSL: 1
   GRPC_PYTHON_BUILD_SYSTEM_ZLIB: 1

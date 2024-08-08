@@ -1,14 +1,17 @@
 {
 	"compilerOptions": {
-		"target": "ES2020",
+		"target": "ESNext",
 		"useDefineForClassFields": true,
-		"lib": ["ES2020", "DOM", "DOM.Iterable"],
+		"lib": ["ESNext", "DOM", "DOM.Iterable"],
 		"module": "ESNext",
 		"skipLibCheck": true,
 		"esModuleInterop": true,
 
 		/* Bundler mode */
 		"moduleResolution": "bundler",
+    "sourceMap": true,
+    "declaration": true,
+    "removeComments": true,
 		"allowImportingTsExtensions": true,
 		"resolveJsonModule": true,
 		"isolatedModules": true,
@@ -23,8 +26,14 @@
 		"noImplicitOverride": true,
 		"noImplicitReturns": true,
 		"noPropertyAccessFromIndexSignature": true,
-		"noUncheckedIndexedAccess": true
+		"noUncheckedIndexedAccess": true,
+
+    "baseUrl": ".",
+    "paths": {
+      "#wf-local/*": ["./src/*"],
+      "#wf-types/*": ["./types/*"]
+    }
 	},
-	"include": ["src", "e2e"],
+	"include": ["src", "e2e", "types", "eslint.config.mts"],
 	"references": [{ "path": "./tsconfig.node.json" }]
 }

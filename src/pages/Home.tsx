@@ -1,10 +1,10 @@
+import Loading from "#wf-local/components/layout/Loading";
+import LogsContainer from "#wf-local/components/layout/LogsContainer";
+import MilestonesSidebar from "#wf-local/components/layout/MilestonesSidebar";
+import { getStatus } from "#wf-local/repositories/status";
+import { IStatus, setGlobalStore } from "#wf-local/store/index";
 import { useQuery } from "@tanstack/react-query";
 import React, { Suspense, useEffect, useState } from "react";
-import Loading from "../components/layout/Loading";
-import LogsContainer from "../components/layout/LogsContainer";
-import MilestonesSidebar from "../components/layout/MilestonesSidebar";
-import { getStatus } from "../repositories/status";
-import { IStatus, setGlobalStore } from "../store/index";
 
 export const Home: React.FC = (): JSX.Element => {
 	const { service, status, setStatus, setService } = setGlobalStore();

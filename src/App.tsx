@@ -1,34 +1,53 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { RouterProvider, type createRouter } from "@tanstack/react-router";
-import type { FunctionComponent } from "./common/types";
-// import { TanStackRouterDevelopmentTools } from "./components/utils/development-tools/TanStackRouterDevelopmentTools";
-
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { App as AntdApp } from 'antd';
+import type { FunctionComponent } from "#wf-local/common/types";
+import AntdConfig from '#wf-local/theme/antd';
 import { TanStackRouterDevtools } from '@tanstack/router-devtools'
+import { useAuth } from './hooks/useAuth';
+import { routeTree } from './routeTree.gen';
+import { RouterProvider, createRouter } from '@tanstack/react-router';
+import { Helmet } from 'react-helmet-async';
+import { MotionLazy } from './components/animate/motion-lazy';
+import {queryClient} from '#wf-local/common/queryClient';
 
-const queryClient = new QueryClient({
-	defaultOptions: {
-		queries: {
-			// ✅ globally default to 20 seconds
-			staleTime: 1000 * 20,
-		},
-	}
+// Create a new router instance
+const router = createRouter({
+  routeTree,
+  context: {
+    authService: undefined,
+    queryClient
+  }
 });
 
-type AppProps = { router: ReturnType<typeof createRouter> };
+// Register the router instance for type safety
+declare module '@tanstack/react-router' {
+  interface Register {
+    router: typeof router
+  }
+}
 
-const App = ({ router }: AppProps): FunctionComponent => {
+
+const App = (): FunctionComponent => {
+
+  const authService = useAuth();
+
 	return (
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} >
-        <TanStackRouterDevtools
-          router={router}
-          initialIsOpen={false}
-          position="bottom-right"
-        />
-      </RouterProvider>
-      <ReactQueryDevtools initialIsOpen={true} />
-    </QueryClientProvider>
+    <AntdConfig>
+      <AntdApp>
+        <MotionLazy>
+          <Helmet>
+            <title>GST DevOps</title>
+          </Helmet>
+          {/* <RouterProvider router={router}> */}
+          <RouterProvider router={router} context={{authService, queryClient}}>
+            <TanStackRouterDevtools
+              router={router}
+              initialIsOpen={true}
+              position="bottom-right"
+            />
+          </RouterProvider>
+        </MotionLazy>
+      </AntdApp>
+    </AntdConfig>
 	);
 };
 

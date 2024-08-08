@@ -1,5 +1,5 @@
 // Function to fetch data (simulated)
-import { ITaskGroup } from "../store/index";
+import { ITaskGroup } from "#wf-local/store/index";
 export async function getStatus({ queryKey }): Promise<ITaskGroup[]> {
 	const [_key, { service }] = queryKey;
 	let url = `${JSON.stringify(import.meta.env["VITE_API_URL"]).replace(/"/gi, "")}/status`;

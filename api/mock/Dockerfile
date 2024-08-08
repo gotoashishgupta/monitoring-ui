@@ -30,7 +30,8 @@ WORKDIR /app
 SHELL ["conda", "run", "-n", "api.mock", "/bin/bash", "-c"]
 
 # Make port 5000 available to the world outside this container
-EXPOSE 5000
+EXPOSE 8080
 
 # Run app.py when the container launches
-CMD ["conda", "run", "--no-capture-output", "-n", "api.mock", "poetry", "run", "python", "app.py"]
+# CMD ["conda", "run", "--no-capture-output", "-n", "api.mock", "poetry", "run", "python", "app.py"]
+CMD ["conda", "run", "--no-capture-output", "-n", "api.mock", "poetry", "run", "gunicorn", "-w", "4", "-k", "uvicorn.workers.UvicornWorker", "app:app", "--bind", "0.0.0.0:8080", "--reload"]
