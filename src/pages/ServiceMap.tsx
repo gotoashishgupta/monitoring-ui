@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import {DashboardLayout} from '#wf-local/components/layout/dashboard';
 
 export const ServiceMap: React.FC = () => {
+
   return (
-    <DashboardLayout/>
+    <div>Service Map</div>
   );
 };
 

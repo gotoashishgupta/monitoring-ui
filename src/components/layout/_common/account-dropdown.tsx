@@ -11,7 +11,9 @@ import { useRoute } from '#wf-local/hooks/useRoute';
 import { useUserInfo, useUserActions } from '#wf-local/store/userStore';
 import { useThemeToken } from '#wf-local/theme/hooks';
 
-const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
+let { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
+
+HOMEPAGE = HOMEPAGE.replace(/"/gi, '');
 
 /**
  * Account Dropdown
@@ -34,7 +36,7 @@ export const AccountDropdown: React.FC = () => {
     } catch (error) {
       console.log(error);
     } finally {
-      replace('/login');
+      replace('/m/login');
     }
   };
   const { colorBgElevated, borderRadiusLG, boxShadowSecondary } = useThemeToken();

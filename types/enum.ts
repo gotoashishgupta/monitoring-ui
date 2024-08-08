@@ -15,7 +15,7 @@ export enum StorageEnum {
   Token = 'token',
   Settings = 'settings',
   I18N = 'i18nextLng',
-  NavMenu = 'nav-menu'
+  NavMenu = 'navMenu'
 }
 
 export enum ThemeMode {
@@ -74,16 +74,18 @@ export interface IMenuItem {
   id: string;
   parentId: string;
   name: string;
-  label: string;
+  label: string | JSX.Element | TemplateStringsArray;
   type: MenuType;
   route: string;
   status?: MenuStatus;
   order?: number;
-  icon?: string;
+  icon?: string | JSX.Element;
   component?: string;
   hide?: boolean;
   hideTab?: boolean;
   frameSrc?: string;
   newFeature?: boolean;
   children?: IMenuItem[];
+  key?: string;
+  disabled?: boolean;
 }

@@ -1,7 +1,6 @@
 import { createLazyFileRoute } from "@tanstack/react-router";
-// import { ServiceMap } from "#wf-local/pages/ServiceMap";
-import Dashboard from "#wf-local/pages/Dashboard";
+import { ServiceMap } from "#wf-local/pages/ServiceMap";
 
 export const Route = createLazyFileRoute("/_authenticated/servicemap")({
-	component: Dashboard
+	component: ServiceMap
 });

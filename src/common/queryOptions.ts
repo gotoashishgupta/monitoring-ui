@@ -6,5 +6,5 @@ import { StorageEnum} from '#wf-types/enum'
 
 export const navMenuQueryOptions = queryOptions({
   queryKey: [StorageEnum.NavMenu],
-  queryFn: () => getNavMenu,
+  queryFn: getNavMenu,
 })

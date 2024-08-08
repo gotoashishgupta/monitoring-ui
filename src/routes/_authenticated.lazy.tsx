@@ -1,6 +1,6 @@
-import Dashboard from "#wf-local/pages/Dashboard";
+import {DashboardLayout} from '#wf-local/components/layout/dashboard';
 import { createLazyFileRoute, redirect} from "@tanstack/react-router";
 
 export const Route = createLazyFileRoute("/_authenticated")({
-  component: Dashboard
+  component: DashboardLayout
 });
