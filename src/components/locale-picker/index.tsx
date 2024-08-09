@@ -8,10 +8,12 @@ import { LocalEnum } from '#wf-types/enum';
 
 type Locale = keyof typeof LocalEnum;
 
+import React from 'react';
+
 /**
  * Locale Picker
  */
-export default function LocalePicker() {
+export const LocalePicker: React.FC = () => {
   const { setLocale, locale } = useLocale();
 
   const localeList: MenuProps['items'] = Object.values(LANGUAGE_MAP).map((item) => {
@@ -34,3 +36,5 @@ export default function LocalePicker() {
     </Dropdown>
   );
 }
+
+export default LocalePicker;

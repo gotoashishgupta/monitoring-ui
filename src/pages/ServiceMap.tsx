@@ -1,48 +1,103 @@
-import { serviceMapQueryOptions } from '#wf-local/common/queryOptions';
-import useServiceMapXFrm from '#wf-local/hooks/useServiceMapXFrm';
-import { useServiceMap, useServiceMapActions } from '#wf-local/store/serviceMapStore';
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { serviceMapQueryOptions } from "#wf-local/common/queryOptions";
+import useServiceMapXFrm from "#wf-local/hooks/useServiceMapXFrm";
+import {
+	useServiceMap,
+	useServiceMapActions,
+} from "#wf-local/store/serviceMapStore";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import React, { useCallback, useMemo, useState } from "react";
+import Graphin, { Behaviors, Utils, GraphinContext } from "@antv/graphin";
+import { App, Select, Row, Col, Card, Layout, Input, type GetProps } from "antd";
+import { SelectNode } from "#wf-local/components/behavior/selectNode";
+import { GRAPHIN_LAYOUT_SELECT_OPTIONS, GRAPHIN_LAYOUT_PRESETS } from "#wf-local/common/constants";
+import { checkIfIdExists } from "#wf-local/common/fn";
 
-import React, {useCallback, useMemo} from 'react';
-import { Graph } from "react-d3-graph";
+type SearchProps = GetProps<typeof Input.Search>;
 
-import {SERVICE_GRAPH_CONFIG} from '#wf-local/common/constants'
-import { App } from 'antd';
+const { Search } = Input;
+
+const {FitView, ZoomCanvas, DragNode, ActivateRelations , ResizeCanvas, Hoverable, TreeCollapse} = Behaviors;
+const LAYOUT_PRESET = {
+  type: 'gForce',
+  preset: {
+    type: 'concentric',
+  },
+};
+const DEFAULT_LAYOUT_OPTION = 'gforce_concentric';
+const DEFAULT_SELECTED_NODE = 'e2e-cfe-dorja';
+
 
 export const ServiceMap: React.FC = () => {
-  const { data } = useSuspenseQuery(serviceMapQueryOptions);
-  const {setServiceMap} = useServiceMapActions()
-  let serviceMap = useServiceMap();
-  const serviceMapXFrmFn = useServiceMapXFrm();
-  const serviceMapData = useMemo(() => {
-    setServiceMap(data);
-    return serviceMapXFrmFn(data)
-  }, [data])
+	const { data } = useSuspenseQuery(serviceMapQueryOptions);
+	const { setServiceMap } = useServiceMapActions();
+	let serviceMap = useServiceMap();
+	const serviceMapXFrmFn = useServiceMapXFrm();
 
-  const {message} = App.useApp()
+	const serviceMapData = useMemo(() => {
+		setServiceMap(data);
+		return serviceMapXFrmFn(data);
+	}, [data]);
 
-  const onNodePositionChange = useCallback(() => {
-    message.success('Trying to change node position');
+
+  const { graph } = React.useContext(GraphinContext);
+  const [layout, setLayout] = useState(LAYOUT_PRESET);
+  const [defaultLayoutOption, setDefaultLayoutOption] = useState(DEFAULT_LAYOUT_OPTION)
+  const [selectedNode, setSelectedNode] = useState(DEFAULT_SELECTED_NODE);
+  // const handleFitView = useCallback(() => {
+  //   graph.fitView([8,8]);
+  //   graph.on('afterlayout', handleFitView);
+  //   return () => {
+  //     graph.off('afterlayout', handleFitView);
+  //   };
+  // }, [defaultLayoutOption]);
+
+
+  const onSearch = useCallback((nodeId) => {
+    const shouldFocus = checkIfIdExists(nodeId, serviceMapData);
+    console.log('should focus', shouldFocus, nodeId);
+    if(shouldFocus) {
+      setSelectedNode(nodeId);
+    }
+  }, [selectedNode, serviceMapData]);
+  const onLayoutChange = useCallback((value) => {
+    setDefaultLayoutOption(value);
+    setLayout(GRAPHIN_LAYOUT_PRESETS[value]);
+    // graph.autoPaint();
   }, []);
 
-  const onZoomChange = useCallback(() => {
-    message.success('Trying to zoom service map');
-  }, [])
+	const { message } = App.useApp();
 
-  return (
-    <>
-    <div>Service Network</div>
-    <Graph
-      id="service-map"
-      config={SERVICE_GRAPH_CONFIG}
-      data={serviceMapData}
-      onNodePositionChange={onNodePositionChange}
-      onZoomChange={onZoomChange}
-    />
-
-    </>
-
-  );
+	return (
+		<Card
+			title="Service Map"
+			extra={
+        <Layout>
+          <Row className="flex" gutter={8}>
+            <Col>
+              <Search placeholder="input search text" value={selectedNode} onSearch={onSearch} enterButton />
+            </Col>
+            <Col span={6}>
+              <Select
+                defaultValue={defaultLayoutOption}
+                onChange={onLayoutChange}
+                options={GRAPHIN_LAYOUT_SELECT_OPTIONS}
+              />
+            </Col>
+          </Row>
+        </Layout>
+      }
+		>
+			<Graphin data={serviceMapData} layout={layout} >
+        <ZoomCanvas enableOptimize />
+        <FitView isBindLayoutChange={true}/>
+        <DragNode />
+        <ActivateRelations trigger="click" />
+        <SelectNode nodeId="e2e-tools"/>
+      </Graphin>
+		</Card>
+	);
 };
+
+
 
 export default ServiceMap;

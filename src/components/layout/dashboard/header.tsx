@@ -51,7 +51,7 @@ export const Header: React.FC<Props> = ({ className = '', offsetTop = false }: P
   }
 
   return (
-    <>
+    <div>
       <header className={`z-20 w-full ${className}`} style={headerStyle}>
         <div
           className="flex flex-grow items-center justify-between px-4 text-gray backdrop-blur xl:px-6 2xl:px-10"
@@ -101,7 +101,7 @@ export const Header: React.FC<Props> = ({ className = '', offsetTop = false }: P
       >
         <Nav closeSideBarDrawer={() => setDrawerOpen(false)} />
       </Drawer>
-    </>
+    </div>
   );
 }
 

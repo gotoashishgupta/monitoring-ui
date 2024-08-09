@@ -28,7 +28,7 @@ const slideInLeft = varSlide({ distance: 10 }).inLeft;
 interface Props {
   closeSideBarDrawer?: () => void;
 }
-export const Nav: React.FC = (props: Props) => {
+export const Nav: React.FC<Props> = (props: Props) => {
   const navigate = useNavigate();
   const matches = useMatches();
   const pathname = useLocation({
