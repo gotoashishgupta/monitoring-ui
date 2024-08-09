@@ -1,25 +1,21 @@
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
-import { Menu, MenuProps } from 'antd';
 import Color from 'color';
 import { m } from 'framer-motion';
+import { Menu, MenuProps } from 'antd';
 import { CSSProperties, useEffect, useMemo, useState } from 'react';
 import { useLocation, useMatches, useNavigate } from '@tanstack/react-router';
-import { useSuspenseQuery } from '@tanstack/react-query';
 
 import MotionContainer from '#wf-local/components/animate/motion-container';
 import { varSlide } from '#wf-local/components/animate/variants';
 import Logo from '#wf-local/components/logo';
 import Scrollbar from '#wf-local/components/scrollbar';
 import { flattenMenuRoutes } from '#wf-local/common/routes';
-import { menuFilter } from '#wf-local/common/routes';
 import { useSettingActions, useSettings } from '#wf-local/store/settingStore';
 import { useThemeToken } from '#wf-local/theme/hooks';
 
 import { NAV_COLLAPSED_WIDTH, NAV_WIDTH } from './config';
 
 import { ThemeLayout } from '#wf-types/enum';
-import {navMenuQueryOptions} from '#wf-local/common/queryOptions';
-import {AppRouteObject} from '#wf-types/router'
 import { useNavMenu } from '#wf-local/store/navMenuStore';
 import {useNavMenuElements} from '#wf-local/hooks/useNavMenuElements';
 
@@ -28,7 +24,7 @@ const slideInLeft = varSlide({ distance: 10 }).inLeft;
 interface Props {
   closeSideBarDrawer?: () => void;
 }
-export const Nav: React.FC = (props: Props) => {
+export const Nav: React.FC<Props> = (props: Props) => {
   const navigate = useNavigate();
   const matches = useMatches();
   const pathname = useLocation({
@@ -36,30 +32,28 @@ export const Nav: React.FC = (props: Props) => {
   });
 
   const { colorPrimary, colorTextBase, colorBgElevated, colorBorder } = useThemeToken();
-
-  const settings = useSettings();
-  const { themeLayout } = settings;
-  const { setSettings } = useSettingActions();
-
   const menuStyle: CSSProperties = {
     background: colorBgElevated,
   };
 
+
   const navMenu = useNavMenu();
   const navMenuElementsFn = useNavMenuElements();
-
   const menuList = useMemo(() => {
     return navMenuElementsFn(navMenu);
   }, [navMenuElementsFn, navMenu]);
-
   const flattenedRoutes = flattenMenuRoutes(navMenu);
 
   /**
    * state
    */
-  const [collapsed, setCollapsed] = useState(false);
   const [openKeys, setOpenKeys] = useState<string[]>([]);
+  const [collapsed, setCollapsed] = useState(false);
   const [menuMode, setMenuMode] = useState<MenuProps['mode']>('inline');
+  const settings = useSettings();
+  const { themeLayout } = settings;
+  const { setSettings } = useSettingActions();
+
 
   useEffect(() => {
     if (themeLayout === ThemeLayout.Vertical) {
@@ -90,13 +84,10 @@ export const Nav: React.FC = (props: Props) => {
   const onClick: MenuProps['onClick'] = ({key}) => {
     const nextLink = flattenedRoutes?.find((el) => el.id === key);
 
-    console.log(`nextLink`, nextLink);
-
     if (nextLink?.hideTab && nextLink?.frameSrc) {
       window.open(nextLink?.frameSrc, '_blank');
       return;
     }
-
     navigate({to: nextLink.route});
     props?.closeSideBarDrawer?.();
   };

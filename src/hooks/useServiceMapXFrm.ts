@@ -1,3 +1,4 @@
+import { useThemeToken } from "#wf-local/theme/hooks";
 import { useCallback } from "react";
 
 import * as R from "ramda";
@@ -6,9 +7,13 @@ import * as R from "ramda";
 const transformNodes = R.map(
 	R.applySpec({
 		id: R.prop("service"),
-		height: R.always(1),
-		size: R.always(24),
-		color: R.always("rgb(97, 205, 187)"),
+		style: {
+			label: {
+				value: R.prop("service"),
+				textAlign: "center",
+				offset: 8,
+			},
+		},
 	})
 );
 
@@ -24,10 +29,17 @@ const transformEdges = R.map(
 // Main transformation function
 const transformData = R.applySpec({
 	nodes: R.pipe(R.prop("nodes"), transformNodes),
-	links: R.pipe(R.prop("edges"), transformEdges),
+	edges: R.pipe(R.prop("edges"), transformEdges),
 });
 
 export const useServiceMapXFrm = () => {
+	const {
+		colorPrimary,
+		colorBgBase,
+		colorTextSecondary,
+		colorTextTertiary,
+		colorBgContainer,
+	} = useThemeToken();
 	const serviceMapXFrmFn = useCallback((x) => {
 		return transformData(x);
 	}, []);

@@ -3,6 +3,7 @@ import { create } from "zustand";
 export interface ITask {
 	errorMessage: null | string;
 	object: null | string;
+	input?: string | "";
 	output: string | "";
 	statusCode: number;
 	statusString: "skipped" | "pending" | "failed" | "completed" | "in-progress";
@@ -24,10 +25,8 @@ export interface IMenu {
 export interface IGlobalState {
 	status: IStatus;
 	service: string;
-	selectedMenu: IMenu;
 	auth: boolean;
 	setAuth: (s: boolean) => void;
-	setMenu: (s: IMenu) => void;
 	setService: (s: string) => void;
 	setStatus: (status: IStatus) => void; // Change the type to IStatus
 }
@@ -36,13 +35,11 @@ export interface IFlattenedTask extends ITask {
 	milestone: string;
 }
 
-export const setGlobalStore = create<IGlobalState>((set) => ({
+export const useGlobalStore = create<IGlobalState>((set) => ({
+	auth: false,
 	status: {} as IStatus,
 	service: "compliance-restrictions",
-	selectedMenu: {} as IMenu,
-	setMenu: (selectedMenu: IMenu) => set(() => ({ selectedMenu })),
 	setService: (service: string) => set(() => ({ service })),
 	setStatus: (status: IStatus) => set(() => ({ status })),
-	auth: false,
 	setAuth: (auth: boolean) => set(() => ({ auth })),
 }));

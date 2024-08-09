@@ -31,9 +31,9 @@ const useSettingStore = create<SettingStore>((set) => ({
 		themeColorPresets: ThemeColorPresets.Default,
 		themeMode: ThemeMode.Light,
 		themeLayout: ThemeLayout.Vertical,
-		themeStretch: false,
+		themeStretch: true,
 		breadCrumb: true,
-		multiTab: true,
+		multiTab: false,
 	},
 	actions: {
 		setSettings: (settings) => {

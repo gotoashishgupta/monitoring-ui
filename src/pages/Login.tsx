@@ -8,7 +8,7 @@ import { App } from "antd";
 
 let { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
 
-HOMEPAGE = HOMEPAGE.replace(/"/gi, "");
+HOMEPAGE = HOMEPAGE?.replace(/"/gi, "");
 
 export const Login: React.FC = (): JSX.Element => {
 	const { message } = App.useApp();

@@ -145,6 +145,9 @@
       "about": "About",
       "login": "Login"
     },
-    "docs": "Document"
+    "docs": "Document",
+    "servicemap": {
+      "service_not_found": "Searched service not found."
+    }
   }
 }

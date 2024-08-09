@@ -1,12 +1,29 @@
 import React, { memo } from "react";
 import { Outlet } from "@tanstack/react-router";
+import { Flex, Layout } from 'antd';
+
+const { Content } = Layout;
+
+const contentStyle: React.CSSProperties = {
+  textAlign: 'center',
+  minHeight: 120,
+  lineHeight: '120px',
+  color: '#fff',
+};
+
+const layoutStyle = {
+  borderRadius: 8,
+  overflow: 'hidden'
+};
 
 export const NonAuthLayout: React.FC = memo(() => {
   return (
-    <div className="flex flex-col-reverse md:flex-row h-dvh overflow-hidden">
-      <div className="relative flex flex-1 flex-col overflow-x-hidden">
+    <Flex gap="middle" wrap className="flex h-dvh overflow-hidden">
+      <Layout style={layoutStyle}>
+        <Content style={contentStyle}>
           <Outlet />
-      </div>
-    </div>
+        </Content>
+      </Layout>
+    </Flex>
   );
 });

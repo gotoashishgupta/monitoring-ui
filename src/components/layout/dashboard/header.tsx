@@ -9,7 +9,7 @@ import { useSettings } from '#wf-local/store/settingStore';
 import { useResponsive, useThemeToken } from '#wf-local/theme/hooks';
 
 import AccountDropdown from '../_common/account-dropdown';
-// import BreadCrumb from '../_common/bread-crumb';
+import BreadCrumb from '../_common/bread-crumb';
 import NoticeButton from '../_common/notice';
 // import SearchBar from '../_common/search-bar';
 import SettingButton from '../_common/setting-button';
@@ -51,7 +51,7 @@ export const Header: React.FC<Props> = ({ className = '', offsetTop = false }: P
   }
 
   return (
-    <>
+    <div>
       <header className={`z-20 w-full ${className}`} style={headerStyle}>
         <div
           className="flex flex-grow items-center justify-between px-4 text-gray backdrop-blur xl:px-6 2xl:px-10"
@@ -68,7 +68,7 @@ export const Header: React.FC<Props> = ({ className = '', offsetTop = false }: P
             ) : (
               <Logo />
             )}
-            {/* <div className="ml-4 hidden md:block">{breadCrumb ? <BreadCrumb /> : null}</div> */}
+            <div className="ml-4 hidden md:block">{breadCrumb ? <BreadCrumb /> : null}</div>
           </div>
 
           <div className="flex">
@@ -77,8 +77,8 @@ export const Header: React.FC<Props> = ({ className = '', offsetTop = false }: P
             <IconButton onClick={() => window.open('https://github.com/gotoashishgupta/monitoring-ui')}>
               <Iconify icon="mdi:github" size={24} />
             </IconButton>
-            <NoticeButton />
-            <SettingButton />
+            {/* <NoticeButton /> */}
+            {/* <SettingButton /> */}
             <AccountDropdown />
           </div>
         </div>
@@ -101,7 +101,7 @@ export const Header: React.FC<Props> = ({ className = '', offsetTop = false }: P
       >
         <Nav closeSideBarDrawer={() => setDrawerOpen(false)} />
       </Drawer>
-    </>
+    </div>
   );
 }
 

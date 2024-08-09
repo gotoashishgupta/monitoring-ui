@@ -1,56 +1,84 @@
-import React, { useEffect, memo, useMemo, useState } from "react";
-import { setGlobalStore, IGlobalState, ITaskGroup, ITask, IStatus, IFlattenedTask } from "#wf-local/store/index";
-import LogItem, { Log } from './LogItem';
-import {getFlattenedTasks} from '#wf-local/common/tasks'
+import React, { useEffect, memo, useState } from "react";
+import { ITask } from "#wf-local/store/index";
+import { Flex, Progress, Spin, Tabs, Typography, Layout, Row, Col } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
+import { useThemeToken } from '#wf-local/theme/hooks';
 
-interface IApplicationLogs {
-  id: string;
-  logs: Log[];
+const { Text } = Typography;
+const {Content} = Layout;
+
+type LogsContainerProp = {
+  tasks: ITask[],
+  milestone: string;
 }
 
-const LogsContainer: React.FC = memo(() => {
-  const { service, status } = setGlobalStore((state) => ({
-    service: state.service,
-    status: state.status,
-  })) as Partial<IGlobalState>;
-  const [selectedApp, setSelectedApp] = useState<string>('');
 
-  const flattenedTasks = useMemo(() => getFlattenedTasks(service, status), [service, status]);
-
-  useEffect(() => {
-    console.log(`Flattened Tasks: ${JSON.stringify(flattenedTasks)}`);
-    if(flattenedTasks.length) {
-      const firstTask = flattenedTasks.length && flattenedTasks[0];
-      firstTask && firstTask?.task && setSelectedApp(firstTask.task);
-
-    }
-  }, [flattenedTasks, setSelectedApp]);
-
-  const selectedTask = flattenedTasks.find(task => task.task === selectedApp);
+const LogsContainer: React.FC<LogsContainerProp> = memo(({tasks, milestone} : LogsContainerProp) => {
+  const { colorBgContainerDisabled, colorTextSecondary } = useThemeToken();
 
   return (
-    <div>
-      <div className="mb-4 space-x-2">
-        {flattenedTasks.map((task, idx) => (
-          <button
-            key={task.task}
-            className={`px-4 py-2 rounded mb-2 ${selectedApp === task.task ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
-            onClick={() => setSelectedApp(task.task)}
-          >
-            {task.task}
-          </button>
-        ))}
+    <Flex vertical className="flex h-full w-full">
+      <Typography.Title level={4}>{milestone}</Typography.Title>
+      <div className="">
+          <Tabs
+            defaultActiveKey="1"
+            tabPosition="top"
+            className="flex w-full h-full"
+            items={
+              tasks.map((task, index) => {
+                let progress: React.ReactElement = <></>
+                switch(task.statusString) {
+                  case 'pending':
+                    progress = <span className={`w-4 h-4 rounded-full bg-gray-300`}></span> //<Progress type="circle" percent={0} size={24} />
+                    break;
+                  case 'skipped':
+                    progress =  <span className={`w-4 h-4 rounded-full bg-gray-600`}></span>
+                    break;
+                  case 'in-progress':
+                    progress = <Spin indicator={<LoadingOutlined spin />} size="small"/>
+                    break;
+                  case 'failed':
+                    progress = <Progress type="circle" status="exception" size={24} />
+                    break;
+                  case 'completed':
+                    progress = <Progress type="circle" percent={100} size={24}/>
+                    break;
+                }
+
+                let promptTemplate:React.ReactElement = <></>
+                if(task?.input) {
+                  promptTemplate = (
+                    <Col span={24} flex="auto" className="mb-4 rounded-lg p-4" style={{ backgroundColor: colorBgContainerDisabled }}>
+                      <Typography.Title level={5}>Prompt</Typography.Title>
+                      <Typography.Text>{('' + task?.input).replace("\n", "<br/>")}</Typography.Text>
+                    </Col>
+                  )
+                }
+              return {
+                label: (
+                    <Flex className="flex gap-4" align="center" key={index}>
+                      {progress}
+                      <Text strong>{task.task}</Text>
+                    </Flex>
+                ),
+                key: '' + index,
+                children: (
+                  <Row>
+                      {promptTemplate}
+                      <Col span={24} className="p-4 rounded-lg shadow-md bg-black">
+                        <pre className="flex w-full h-[calc(100vh-24rem)] whitespace-pre-wrap font-mono text-sm text-white">
+                          {task.output || "NA" }
+                        </pre>
+                      </Col>
+                  </Row>
+                )
+              }
+          })}
+          />
+
       </div>
-      <div className="overflow-auto h-[calc(100vh-16rem)] p-4 rounded-lg shadow-md bg-black text-white">
-        {
-          selectedTask && (
-            <pre className="whitespace-pre-wrap font-mono text-sm">
-                {selectedTask.output || 'NA'}
-            </pre>
-          )
-        }
-      </div>
-    </div>
+
+    </Flex>
   );
 });
 

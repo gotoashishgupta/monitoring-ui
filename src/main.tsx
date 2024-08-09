@@ -1,10 +1,11 @@
-import { Suspense } from 'react'
-import ReactDOM from 'react-dom/client'
 import { QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { Suspense } from 'react';
+import ReactDOM from 'react-dom/client';
 
+import { queryClient } from '#wf-local/common/queryClient';
 import { HelmetProvider } from 'react-helmet-async';
-import {queryClient} from '#wf-local/common/queryClient';
+// import 'virtual:svg-icons-register';
 
 // Import the generated route tree
 import App from "#wf-local/App";

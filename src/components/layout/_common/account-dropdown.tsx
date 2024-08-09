@@ -4,7 +4,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from '@tanstack/react-router';
 
-import { IconButton } from '#wf-local/components/icon';
+import { IconButton, Iconify } from '#wf-local/components/icon';
 import { useLoginStateContext, LoginStateEnum } from '#wf-local/providers/LoginStateProvider';
 import {useAuth} from '#wf-local/hooks/useAuth';
 import { useRoute } from '#wf-local/hooks/useRoute';
@@ -13,7 +13,7 @@ import { useThemeToken } from '#wf-local/theme/hooks';
 
 let { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
 
-HOMEPAGE = HOMEPAGE.replace(/"/gi, '');
+HOMEPAGE = HOMEPAGE?.replace(/"/gi, '');
 
 /**
  * Account Dropdown
@@ -75,7 +75,7 @@ export const AccountDropdown: React.FC = () => {
   return (
     <Dropdown menu={{ items }} trigger={['click']} dropdownRender={dropdownRender}>
       <IconButton className="h-10 w-10 transform-none px-0 hover:scale-105">
-        <img className="h-8 w-8 rounded-full" src="https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/331.jpg" alt="" />
+        <Iconify className="h-8 w-8 rounded-full" icon="ant-design:user-outlined"></Iconify>
       </IconButton>
     </Dropdown>
   );
