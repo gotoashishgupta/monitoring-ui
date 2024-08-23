@@ -9,7 +9,7 @@ import { useSettings } from '#wf-local/store/settingStore';
 import { useResponsive, useThemeToken } from '#wf-local/theme/hooks';
 
 import AccountDropdown from '../_common/account-dropdown';
-// import BreadCrumb from '../_common/bread-crumb';
+import BreadCrumb from '../_common/bread-crumb';
 import NoticeButton from '../_common/notice';
 // import SearchBar from '../_common/search-bar';
 import SettingButton from '../_common/setting-button';
@@ -68,7 +68,7 @@ export const Header: React.FC<Props> = ({ className = '', offsetTop = false }: P
             ) : (
               <Logo />
             )}
-            {/* <div className="ml-4 hidden md:block">{breadCrumb ? <BreadCrumb /> : null}</div> */}
+            <div className="ml-4 hidden md:block">{breadCrumb ? <BreadCrumb /> : null}</div>
           </div>
 
           <div className="flex">

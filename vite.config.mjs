@@ -1,6 +1,8 @@
+import path from 'path';
 import { defineConfig } from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import react from "@vitejs/plugin-react-swc";
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 import { TanStackRouterVite } from '@tanstack/router-plugin/vite'
 
 // https://vitejs.dev/config/
@@ -12,7 +14,11 @@ export default defineConfig(({ mode: _ }) => {
         quoteStyle: "double",
       }),
       react(),
-      tsconfigPaths()
+      tsconfigPaths(),
+      createSvgIconsPlugin({
+        iconDirs: [path.resolve(process.cwd(), 'src/assets/icons')],
+        symbolId: 'icon-[dir]-[name]',
+      }),
     ],
     define: {
       // Define any custom environment variables here

@@ -1,13 +1,13 @@
-import { setGlobalStore, IGlobalState } from "#wf-local/store/index";
+import { useGlobalStore, IGlobalState } from "#wf-local/store/index";
 
 export function login(): boolean {
-  const { setAuth } = setGlobalStore((state) => ({
+  const { setAuth } = useGlobalStore((state) => ({
     setAuth: state.setAuth
   })) as Partial<IGlobalState>;
 
   setAuth(true);
 
-  const { auth } = setGlobalStore((state) => ({
+  const { auth } = useGlobalStore((state) => ({
     auth: state.auth,
   })) as Partial<IGlobalState>;
 
@@ -17,13 +17,13 @@ export function login(): boolean {
 }
 
 export function logout(): boolean {
-  const { setAuth } = setGlobalStore((state) => ({
+  const { setAuth } = useGlobalStore((state) => ({
     setAuth: state.setAuth
   })) as Partial<IGlobalState>;
 
   setAuth(false);
 
-  const { auth } = setGlobalStore((state) => ({
+  const { auth } = useGlobalStore((state) => ({
     auth: state.auth,
   })) as Partial<IGlobalState>;
 

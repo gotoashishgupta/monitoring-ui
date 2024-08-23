@@ -13,7 +13,7 @@ import { useThemeToken } from '#wf-local/theme/hooks';
 
 let { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
 
-HOMEPAGE = HOMEPAGE.replace(/"/gi, '');
+HOMEPAGE = HOMEPAGE?.replace(/"/gi, '');
 
 /**
  * Account Dropdown

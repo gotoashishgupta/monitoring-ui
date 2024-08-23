@@ -16,7 +16,7 @@ type SearchProps = GetProps<typeof Input.Search>;
 
 const { Search } = Input;
 
-const {FitView, ZoomCanvas, DragNode, ActivateRelations , ResizeCanvas, Hoverable, TreeCollapse} = Behaviors;
+const {FitView, ZoomCanvas, DragNode, ActivateRelations} = Behaviors;
 const LAYOUT_PRESET = {
   type: 'gForce',
   preset: {
@@ -24,33 +24,24 @@ const LAYOUT_PRESET = {
   },
 };
 const DEFAULT_LAYOUT_OPTION = 'gforce_concentric';
-const DEFAULT_SELECTED_NODE = 'e2e-cfe-dorja';
+const DEFAULT_SELECTED_NODE = '' ; //'e2e-cfe-dorja';
 
 
 export const ServiceMap: React.FC = () => {
 	const { data } = useSuspenseQuery(serviceMapQueryOptions);
 	const { setServiceMap } = useServiceMapActions();
-	let serviceMap = useServiceMap();
 	const serviceMapXFrmFn = useServiceMapXFrm();
+	const { message } = App.useApp();
+	let serviceMap = useServiceMap();
 
 	const serviceMapData = useMemo(() => {
 		setServiceMap(data);
 		return serviceMapXFrmFn(data);
 	}, [data]);
 
-
-  const { graph } = React.useContext(GraphinContext);
   const [layout, setLayout] = useState(LAYOUT_PRESET);
   const [defaultLayoutOption, setDefaultLayoutOption] = useState(DEFAULT_LAYOUT_OPTION)
   const [selectedNode, setSelectedNode] = useState(DEFAULT_SELECTED_NODE);
-  // const handleFitView = useCallback(() => {
-  //   graph.fitView([8,8]);
-  //   graph.on('afterlayout', handleFitView);
-  //   return () => {
-  //     graph.off('afterlayout', handleFitView);
-  //   };
-  // }, [defaultLayoutOption]);
-
 
   const onSearch = useCallback((nodeId) => {
     const shouldFocus = checkIfIdExists(nodeId, serviceMapData);
@@ -59,13 +50,15 @@ export const ServiceMap: React.FC = () => {
       setSelectedNode(nodeId);
     }
   }, [selectedNode, serviceMapData]);
+
+  const onClear = useCallback(() => {
+    setSelectedNode('');
+  }, [selectedNode]);
+
   const onLayoutChange = useCallback((value) => {
     setDefaultLayoutOption(value);
     setLayout(GRAPHIN_LAYOUT_PRESETS[value]);
-    // graph.autoPaint();
   }, []);
-
-	const { message } = App.useApp();
 
 	return (
 		<Card
@@ -74,7 +67,7 @@ export const ServiceMap: React.FC = () => {
         <Layout>
           <Row className="flex" gutter={8}>
             <Col>
-              <Search placeholder="input search text" value={selectedNode} onSearch={onSearch} enterButton />
+              <Search placeholder="input search text" onSearch={onSearch} enterButton allowClear onClear={onClear}/>
             </Col>
             <Col span={6}>
               <Select
@@ -92,7 +85,7 @@ export const ServiceMap: React.FC = () => {
         <FitView isBindLayoutChange={true}/>
         <DragNode />
         <ActivateRelations trigger="click" />
-        <SelectNode nodeId="e2e-tools"/>
+        <SelectNode nodeId={selectedNode}/>
       </Graphin>
 		</Card>
 	);

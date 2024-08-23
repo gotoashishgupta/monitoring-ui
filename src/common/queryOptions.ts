@@ -1,7 +1,6 @@
 import { queryOptions } from "@tanstack/react-query";
 
-import { getNavMenu } from '#wf-local/repositories/navMenu'
-import { getServiceMap } from '#wf-local/repositories/serviceMap'
+import { getNavMenu, getServiceMap, getStatus } from '#wf-local/repositories'
 import { StorageEnum} from '#wf-types/enum'
 
 
@@ -13,4 +12,9 @@ export const navMenuQueryOptions = queryOptions({
 export const serviceMapQueryOptions = queryOptions({
   queryKey: [StorageEnum.ServiceMap],
   queryFn: getServiceMap,
+})
+
+export const aiStatusQueryOptions = queryOptions({
+  queryKey: [StorageEnum.AIStatus],
+  queryFn: getStatus,
 })

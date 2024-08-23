@@ -24,8 +24,17 @@ import { Route as PublicMLoginImport } from "./routes/_public/m.login"
 const AuthenticatedDashboardLazyImport = createFileRoute(
   "/_authenticated/dashboard",
 )()
+const AuthenticatedMenuLevelMenuLevel1aLazyImport = createFileRoute(
+  "/_authenticated/menu-level/menu-level-1a",
+)()
 const AuthenticatedMAboutLazyImport = createFileRoute(
   "/_authenticated/m/about",
+)()
+const AuthenticatedMenuLevelMenuLevel1bMenuLevel2bLazyImport = createFileRoute(
+  "/_authenticated/menu-level/menu-level-1b/menu-level-2b",
+)()
+const AuthenticatedMenuLevelMenuLevel1bMenuLevel2aLazyImport = createFileRoute(
+  "/_authenticated/menu-level/menu-level-1b/menu-level-2a",
 )()
 
 // Create/Update Routes
@@ -63,6 +72,16 @@ const AuthenticatedServicemapRoute = AuthenticatedServicemapImport.update({
   import("./routes/_authenticated/servicemap.lazy").then((d) => d.Route),
 )
 
+const AuthenticatedMenuLevelMenuLevel1aLazyRoute =
+  AuthenticatedMenuLevelMenuLevel1aLazyImport.update({
+    path: "/menu-level/menu-level-1a",
+    getParentRoute: () => AuthenticatedRoute,
+  } as any).lazy(() =>
+    import("./routes/_authenticated/menu-level.menu-level-1a.lazy").then(
+      (d) => d.Route,
+    ),
+  )
+
 const AuthenticatedMAboutLazyRoute = AuthenticatedMAboutLazyImport.update({
   path: "/m/about",
   getParentRoute: () => AuthenticatedRoute,
@@ -76,6 +95,26 @@ const PublicMLoginRoute = PublicMLoginImport.update({
 } as any).lazy(() =>
   import("./routes/_public/m.login.lazy").then((d) => d.Route),
 )
+
+const AuthenticatedMenuLevelMenuLevel1bMenuLevel2bLazyRoute =
+  AuthenticatedMenuLevelMenuLevel1bMenuLevel2bLazyImport.update({
+    path: "/menu-level/menu-level-1b/menu-level-2b",
+    getParentRoute: () => AuthenticatedRoute,
+  } as any).lazy(() =>
+    import(
+      "./routes/_authenticated/menu-level.menu-level-1b.menu-level-2b.lazy"
+    ).then((d) => d.Route),
+  )
+
+const AuthenticatedMenuLevelMenuLevel1bMenuLevel2aLazyRoute =
+  AuthenticatedMenuLevelMenuLevel1bMenuLevel2aLazyImport.update({
+    path: "/menu-level/menu-level-1b/menu-level-2a",
+    getParentRoute: () => AuthenticatedRoute,
+  } as any).lazy(() =>
+    import(
+      "./routes/_authenticated/menu-level.menu-level-1b.menu-level-2a.lazy"
+    ).then((d) => d.Route),
+  )
 
 // Populate the FileRoutesByPath interface
 
@@ -130,6 +169,27 @@ declare module "@tanstack/react-router" {
       preLoaderRoute: typeof AuthenticatedMAboutLazyImport
       parentRoute: typeof AuthenticatedImport
     }
+    "/_authenticated/menu-level/menu-level-1a": {
+      id: "/_authenticated/menu-level/menu-level-1a"
+      path: "/menu-level/menu-level-1a"
+      fullPath: "/menu-level/menu-level-1a"
+      preLoaderRoute: typeof AuthenticatedMenuLevelMenuLevel1aLazyImport
+      parentRoute: typeof AuthenticatedImport
+    }
+    "/_authenticated/menu-level/menu-level-1b/menu-level-2a": {
+      id: "/_authenticated/menu-level/menu-level-1b/menu-level-2a"
+      path: "/menu-level/menu-level-1b/menu-level-2a"
+      fullPath: "/menu-level/menu-level-1b/menu-level-2a"
+      preLoaderRoute: typeof AuthenticatedMenuLevelMenuLevel1bMenuLevel2aLazyImport
+      parentRoute: typeof AuthenticatedImport
+    }
+    "/_authenticated/menu-level/menu-level-1b/menu-level-2b": {
+      id: "/_authenticated/menu-level/menu-level-1b/menu-level-2b"
+      path: "/menu-level/menu-level-1b/menu-level-2b"
+      fullPath: "/menu-level/menu-level-1b/menu-level-2b"
+      preLoaderRoute: typeof AuthenticatedMenuLevelMenuLevel1bMenuLevel2bLazyImport
+      parentRoute: typeof AuthenticatedImport
+    }
   }
 }
 
@@ -141,6 +201,9 @@ export const routeTree = rootRoute.addChildren({
     AuthenticatedDashboardLazyRoute,
     AuthenticatedIndexRoute,
     AuthenticatedMAboutLazyRoute,
+    AuthenticatedMenuLevelMenuLevel1aLazyRoute,
+    AuthenticatedMenuLevelMenuLevel1bMenuLevel2aLazyRoute,
+    AuthenticatedMenuLevelMenuLevel1bMenuLevel2bLazyRoute,
   }),
   PublicRoute: PublicRoute.addChildren({ PublicMLoginRoute }),
 })
@@ -163,7 +226,10 @@ export const routeTree = rootRoute.addChildren({
         "/_authenticated/servicemap",
         "/_authenticated/dashboard",
         "/_authenticated/",
-        "/_authenticated/m/about"
+        "/_authenticated/m/about",
+        "/_authenticated/menu-level/menu-level-1a",
+        "/_authenticated/menu-level/menu-level-1b/menu-level-2a",
+        "/_authenticated/menu-level/menu-level-1b/menu-level-2b"
       ]
     },
     "/_public": {
@@ -190,6 +256,18 @@ export const routeTree = rootRoute.addChildren({
     },
     "/_authenticated/m/about": {
       "filePath": "_authenticated/m.about.lazy.tsx",
+      "parent": "/_authenticated"
+    },
+    "/_authenticated/menu-level/menu-level-1a": {
+      "filePath": "_authenticated/menu-level.menu-level-1a.lazy.tsx",
+      "parent": "/_authenticated"
+    },
+    "/_authenticated/menu-level/menu-level-1b/menu-level-2a": {
+      "filePath": "_authenticated/menu-level.menu-level-1b.menu-level-2a.lazy.tsx",
+      "parent": "/_authenticated"
+    },
+    "/_authenticated/menu-level/menu-level-1b/menu-level-2b": {
+      "filePath": "_authenticated/menu-level.menu-level-1b.menu-level-2b.lazy.tsx",
       "parent": "/_authenticated"
     }
   }

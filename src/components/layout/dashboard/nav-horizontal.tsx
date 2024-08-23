@@ -1,14 +1,15 @@
 import { Menu, MenuProps } from 'antd';
-import { useState, useEffect, CSSProperties, useMemo } from 'react';
-import { useNavigate, useMatches, useLocation } from '@tanstack/react-router';
+import { CSSProperties, useEffect, useMemo, useState } from 'react';
+import { useLocation, useMatches, useNavigate } from '@tanstack/react-router';
 
-import { useRouteToMenuFn, useNavMenuRoutes, useFlattenedRoutes } from '#wf-local/hooks';
-import { menuFilter } from '#wf-local/common/routes';
+import { flattenMenuRoutes } from '#wf-local/common/routes';
 import { useThemeToken } from '#wf-local/theme/hooks';
 
 import { NAV_HORIZONTAL_HEIGHT } from './config';
+import useNavMenuElements from '#wf-local/hooks/useNavMenuElements';
+import { useNavMenu } from '#wf-local/store/navMenuStore';
 
-export default function NavHorizontal() {
+export const NavHorizontal: React.FC = () => {
   const navigate = useNavigate();
   const matches = useMatches();
   const pathname = useLocation({
@@ -16,15 +17,17 @@ export default function NavHorizontal() {
   });
 
   const { colorBgElevated } = useThemeToken();
+  const menuStyle: CSSProperties = {
+    background: colorBgElevated,
+  };
 
-  const routeToMenuFn = useRouteToMenuFn();
-  const navMenuRoutes = useNavMenuRoutes();
+
+  const navMenu = useNavMenu();
+  const navMenuElementsFn = useNavMenuElements();
   const menuList = useMemo(() => {
-    const menuRoutes = menuFilter(navMenuRoutes);
-    return routeToMenuFn(menuRoutes);
-  }, [routeToMenuFn, navMenuRoutes]);
-
-  const flattenedRoutes = useFlattenedRoutes();
+    return navMenuElementsFn(navMenu);
+  }, [navMenuElementsFn, navMenu]);
+  const flattenedRoutes = flattenMenuRoutes(navMenu);
 
   /**
    * state
@@ -42,19 +45,17 @@ export default function NavHorizontal() {
   const onOpenChange: MenuProps['onOpenChange'] = (keys) => {
     setOpenKeys(keys);
   };
-  const onClick: MenuProps['onClick'] = ({ key }) => {
-    const nextLink = flattenedRoutes?.find((el) => el.key === key);
+  const onClick: MenuProps['onClick'] = ({key}) => {
+    const nextLink = flattenedRoutes?.find((el) => el.id === key);
 
     if (nextLink?.hideTab && nextLink?.frameSrc) {
       window.open(nextLink?.frameSrc, '_blank');
       return;
     }
-    navigate({to: key});
+    navigate({to: nextLink.route});
   };
 
-  const menuStyle: CSSProperties = {
-    background: colorBgElevated,
-  };
+
   return (
     <div className="w-screen" style={{ height: NAV_HORIZONTAL_HEIGHT }}>
       <Menu
@@ -72,3 +73,6 @@ export default function NavHorizontal() {
     </div>
   );
 }
+
+
+export default NavHorizontal;

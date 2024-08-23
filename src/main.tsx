@@ -5,6 +5,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import { HelmetProvider } from 'react-helmet-async';
 import {queryClient} from '#wf-local/common/queryClient';
+import 'virtual:svg-icons-register';
 
 // Import the generated route tree
 import App from "#wf-local/App";

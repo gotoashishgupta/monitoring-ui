@@ -1,14 +1,14 @@
 import React from 'react';
 import classNames from 'classnames';
 
-export interface Log {
+export type Log = {
   id: string;
   message: string;
   status: 'Completed' | 'Error' | 'Not Started' | 'In Progress';
   timestamp: string;
 }
 
-interface LogItemProps {
+type LogItemProps = {
   log: Log;
 }
 

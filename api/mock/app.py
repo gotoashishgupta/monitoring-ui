@@ -145,6 +145,64 @@ async def nav_menu():
             ]
 
         menu.append(more)
+
+        multilevel = MenuItem(
+            id=faker.uuid4(),
+            parentId="0",
+            name="Menu Level",
+            label="sys.menu.menulevel.index",
+            type=MenuType.CATALOGUE,
+            route="/menu-level",
+            order=4,
+            icon="ic-analysis",
+        )
+        multilevel.children = [
+            MenuItem(
+                id=faker.uuid4(),
+                parentId=multilevel.id,
+                name="Menu Level 1a",
+                label="sys.menu.menulevel.1a",
+                type=MenuType.MENU,
+                route="/menu-level/menu-level-1a",
+                order=1,
+                icon="ic-analysis",
+            ),
+            MenuItem(
+                id=faker.uuid4(),
+                parentId=multilevel.id,
+                name="Menu Level 1b",
+                label="sys.menu.menulevel.1b.index",
+                type=MenuType.CATALOGUE,
+                route="/menu-level/menu-level-1b",
+                order=2,
+                icon="ic-analysis",
+            ),
+        ]
+        multilevel.children[1].children = [
+            MenuItem(
+                id=faker.uuid4(),
+                parentId=multilevel.children[1].id,
+                name="Menu Level 2a",
+                label="sys.menu.menulevel.1b.2a",
+                type=MenuType.MENU,
+                route="/menu-level/menu-level-1b/menu-level-2a",
+                order=1,
+                icon="ic-analysis",
+            ),
+            MenuItem(
+                id=faker.uuid4(),
+                parentId=multilevel.children[1].id,
+                name="Menu Level 2b",
+                label="sys.menu.menulevel.1b.2b.index",
+                type=MenuType.MENU,
+                route="/menu-level/menu-level-1b/menu-level-2b",
+                order=2,
+                icon="ic-analysis",
+            ),
+
+        ]
+
+        menu.append(multilevel)
         menu_json = [item.model_dump() for item in menu]
         return JSONResponse(menu_json)
 
