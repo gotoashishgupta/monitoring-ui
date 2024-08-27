@@ -1,16 +1,16 @@
 import { serviceMapQueryOptions } from "#wf-local/common/queryOptions";
 import useServiceMapXFrm from "#wf-local/hooks/useServiceMapXFrm";
 import {
-	useServiceMap,
 	useServiceMapActions,
 } from "#wf-local/store/serviceMapStore";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import React, { useCallback, useMemo, useState } from "react";
+import React, { Suspense, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import Graphin, { Behaviors, Utils, GraphinContext } from "@antv/graphin";
-import { App, Select, Row, Col, Card, Layout, Input, type GetProps } from "antd";
+import { Select, Card, Input, type GetProps } from "antd";
 import { SelectNode } from "#wf-local/components/behavior/selectNode";
-import { GRAPHIN_LAYOUT_SELECT_OPTIONS, GRAPHIN_LAYOUT_PRESETS } from "#wf-local/common/constants";
+import { GRAPHIN_LAYOUT_SELECT_OPTIONS, GRAPHIN_LAYOUT_PRESETS, SERVICE_MAP_ENVIRONMENT_SELECT_OPTIONS } from "#wf-local/common/constants";
 import { checkIfIdExists } from "#wf-local/common/fn";
+import { CircleLoading } from "#wf-local/components/loading";
 
 type SearchProps = GetProps<typeof Input.Search>;
 
@@ -24,23 +24,25 @@ const LAYOUT_PRESET = {
   },
 };
 const DEFAULT_LAYOUT_OPTION = 'gforce_concentric';
+const DEFAULT_ENV_OPTION = 'e2e';
 const DEFAULT_SELECTED_NODE = '' ; //'e2e-cfe-dorja';
 
 
 export const ServiceMap: React.FC = () => {
-	const { data } = useSuspenseQuery(serviceMapQueryOptions);
+  const [refreshCount, setRefreshCount] = useState(1);
+  const [env, setEnv] = useState(DEFAULT_ENV_OPTION);
+	const { data } = useSuspenseQuery(serviceMapQueryOptions(env));
 	const { setServiceMap } = useServiceMapActions();
 	const serviceMapXFrmFn = useServiceMapXFrm();
-	const { message } = App.useApp();
-	let serviceMap = useServiceMap();
 
 	const serviceMapData = useMemo(() => {
+    console.log(`Refecting service map data`);
 		setServiceMap(data);
 		return serviceMapXFrmFn(data);
 	}, [data]);
 
   const [layout, setLayout] = useState(LAYOUT_PRESET);
-  const [defaultLayoutOption, setDefaultLayoutOption] = useState(DEFAULT_LAYOUT_OPTION)
+  const [defaultLayoutOption, setDefaultLayoutOption] = useState(DEFAULT_LAYOUT_OPTION);
   const [selectedNode, setSelectedNode] = useState(DEFAULT_SELECTED_NODE);
 
   const onSearch = useCallback((nodeId) => {
@@ -60,33 +62,53 @@ export const ServiceMap: React.FC = () => {
     setLayout(GRAPHIN_LAYOUT_PRESETS[value]);
   }, []);
 
+  const onEnvChange = useCallback((value) => {
+    setEnv(value);
+  }, []);
+
+  useEffect(() => {
+    // let c = 1;
+    // if(refreshCount != 0) {
+    //   c = 0;
+    // }
+    setRefreshCount(refreshCount+1);
+  }, [serviceMapData]);
+
 	return (
 		<Card
 			title="Service Map"
+      className="h-full"
 			extra={
-        <Layout>
-          <Row className="flex" gutter={8}>
-            <Col>
-              <Search placeholder="input search text" onSearch={onSearch} enterButton allowClear onClear={onClear}/>
-            </Col>
-            <Col span={6}>
-              <Select
-                defaultValue={defaultLayoutOption}
-                onChange={onLayoutChange}
-                options={GRAPHIN_LAYOUT_SELECT_OPTIONS}
-              />
-            </Col>
-          </Row>
-        </Layout>
+        <div className="min-w-62.5 w-full flex flex-grow">
+          <Select
+            className="min-w-[150px]"
+            defaultValue={DEFAULT_ENV_OPTION}
+            onChange={onEnvChange}
+            options={SERVICE_MAP_ENVIRONMENT_SELECT_OPTIONS}
+          />
+          <span className="ms-4"></span>
+          <Search placeholder="input search text" onSearch={onSearch} enterButton allowClear onClear={onClear} className="min-w-48"/>
+          <span className="ms-4"></span>
+          <Select
+            className="min-w-[200px]"
+            defaultValue={defaultLayoutOption}
+            onChange={onLayoutChange}
+            options={GRAPHIN_LAYOUT_SELECT_OPTIONS}
+          />
+        </div>
       }
 		>
-			<Graphin data={serviceMapData} layout={layout} >
-        <ZoomCanvas enableOptimize />
-        <FitView isBindLayoutChange={true}/>
-        <DragNode />
-        <ActivateRelations trigger="click" />
-        <SelectNode nodeId={selectedNode}/>
-      </Graphin>
+      <div style={{ minHeight: `calc(100vh - 240px)` }}>
+        <Suspense fallback={<CircleLoading />}>
+          <Graphin data={serviceMapData} layout={layout} style={{ minHeight: `calc(100vh - 240px)` }} key={refreshCount}>
+            <ZoomCanvas enableOptimize maxZoom={8} minZoom={.25}/>
+            <FitView isBindLayoutChange={true}/>
+            <DragNode />
+            <ActivateRelations trigger="click" />
+            <SelectNode nodeId={selectedNode}/>
+          </Graphin>
+        </Suspense>
+      </div>
 		</Card>
 	);
 };

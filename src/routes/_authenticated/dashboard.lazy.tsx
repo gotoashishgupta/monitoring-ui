@@ -1,6 +1,6 @@
 import { createLazyFileRoute } from "@tanstack/react-router";
-import { Home } from "#wf-local/pages/Home";
+import { Dashboard } from "#wf-local/pages/Dashboard";
 
 export const Route = createLazyFileRoute("/_authenticated/dashboard")({
-	component: Home,
+	component: Dashboard,
 });

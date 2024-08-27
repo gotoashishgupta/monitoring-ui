@@ -116,3 +116,20 @@ export const GRAPHIN_LAYOUT_PRESETS = {
 		type: "comboForce",
 	},
 };
+
+export const SERVICE_MAP_ENVIRONMENT_SELECT_OPTIONS = [
+	{
+		label: "Production",
+		value: "prod",
+	},
+  {
+		label: "Development",
+		value: "dev",
+	},
+  {
+		label: "E2E",
+		value: "e2e",
+	},
+]
+
+export const DEFAULT_ENV_OPTION = "e2e";

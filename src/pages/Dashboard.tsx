@@ -3,9 +3,10 @@ import { useQuery } from "@tanstack/react-query";
 import { getStatus } from "#wf-local/repositories/status";
 import { IStatus, ITask, ITaskGroup, useGlobalStore } from "#wf-local/store/index";
 import LogsContainer from "#wf-local/components/layout/LogsContainer";
-import { Card, Flex, Input, Skeleton, Space, Tabs, Typography } from "antd";
-import Loading from "#wf-local/components/layout/Loading";
-import { getTaskGroupStatusClass } from "#wf-local/common/fn";
+import { Card, Flex, Input, Progress, Skeleton, Space, Spin, Tabs, Typography } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
+import { Iconify } from "#wf-local/components/icon";
+import { aiStatusQueryOptions } from "#wf-local/common/queryOptions";
 const { Text } = Typography;
 const { Search } = Input;
 
@@ -39,6 +40,7 @@ const getMilestones = (service: string | undefined, status: IStatus = {}): IMile
     const isProgressWithErrors = taskStatuses.includes("in-progress") && taskStatuses.includes("failed");
     const isErrorAll = taskStatuses.every((x) => x === "failed");
     const isSucceeded = taskStatuses.every((x) => ["completed", "skipped"].includes(x));
+    const isPartiallySucceeded = taskStatuses.every((x) => ["completed", "pending"].includes(x));
     const isSkipped = taskStatuses.every((x) => x === "skipped");
 
     if (isPending) {
@@ -53,6 +55,8 @@ const getMilestones = (service: string | undefined, status: IStatus = {}): IMile
       status = "Skipped";
     } else if (isSucceeded) {
       status = "Completed";
+    } else if (isPartiallySucceeded) {
+      status = "Partially Completed";
     }
 
     return {
@@ -64,18 +68,14 @@ const getMilestones = (service: string | undefined, status: IStatus = {}): IMile
   }) || initialMilestones;
 };
 
+const DEFAULT_REFETCH_INTERVAL = 10000;
 
-
-export const Home: React.FC = (): JSX.Element => {
+export const Dashboard: React.FC = (): JSX.Element => {
   const { service, status, setStatus, setService } = useGlobalStore();
   const [inputValue, setInputValue] = useState(service);
 
   // Fetch data using useQuery
-  const { isPending, isError, data, error, isSuccess } = useQuery({
-    queryKey: ["init", {service} ],
-    queryFn: getStatus,
-    refetchInterval: 5000,
-  });
+  const { isPending, isError, data, error, isSuccess } = useQuery(aiStatusQueryOptions(service, DEFAULT_REFETCH_INTERVAL));
 
   const milestones = useMemo(() => getMilestones(service, status), [service, status]);
 
@@ -105,7 +105,7 @@ export const Home: React.FC = (): JSX.Element => {
   }, [setService]);
 
   return (
-      <Card className="mb-6 flex-col rounded-2xl !p-0"
+      <Card className="mb-6 flex-col rounded-2xl !p-0 m-auto h-full w-full"
         title={
           <Flex gap="small">
             <Text type="secondary">AI tool Progress of</Text>
@@ -121,13 +121,37 @@ export const Home: React.FC = (): JSX.Element => {
         <Tabs
           defaultActiveKey="1"
           tabPosition="left"
-          className="flex h-full w-full"
+          className="flex flex-grow h-full w-full"
           items={
             milestones.map((milestone, index) => {
+                let progress = <></>
+                switch(milestone.status) {
+                  case 'Not Started':
+                    progress = <span className={`w-4 h-4 rounded-full bg-gray-300`}></span>
+                    break;
+                  case 'Skipped':
+                    progress =  <Iconify icon="ant-design:minus-circle-outlined" className={`w-4 h-4 rounded-full`} />
+                    break;
+                  case 'In Progress':
+                    progress = <Spin indicator={<LoadingOutlined spin />} size="small"/>
+                    break;
+                  case 'In Progress (with Errors)':
+                    progress = <Spin indicator={<LoadingOutlined spin />} size="small" colorPrimary="#faad14"/>
+                    break;
+                  case 'Error':
+                    progress = <Progress type="circle" status="exception" size={24} strokeColor="#ff5630" trailColor="#ff5630"/>
+                    break;
+                  case 'Completed':
+                    progress = <Progress type="circle" percent={100} size={24}/>
+                    break;
+                  case 'Partially Completed':
+                    progress = <Progress type="circle" percent={80} size={24} success={{ percent: 80 }}/>
+                    break;
+                }
             return {
               label: (
                   <Flex className="flex gap-4" align="center" key={index}>
-                    <span className={`w-4 h-4 rounded-full ${getTaskGroupStatusClass(milestone.status)}`}></span>
+                    {progress}
                     <Flex vertical align="flex-start">
                       <Text strong>{milestone.title}</Text>
                       <Text type="secondary" italic>{milestone.status}</Text>

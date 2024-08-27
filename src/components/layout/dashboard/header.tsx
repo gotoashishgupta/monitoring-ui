@@ -77,8 +77,8 @@ export const Header: React.FC<Props> = ({ className = '', offsetTop = false }: P
             <IconButton onClick={() => window.open('https://github.com/gotoashishgupta/monitoring-ui')}>
               <Iconify icon="mdi:github" size={24} />
             </IconButton>
-            <NoticeButton />
-            <SettingButton />
+            {/* <NoticeButton /> */}
+            {/* <SettingButton /> */}
             <AccountDropdown />
           </div>
         </div>
