@@ -72,7 +72,7 @@ export const ServiceMap: React.FC = () => {
     //   c = 0;
     // }
     setRefreshCount(refreshCount+1);
-  }, [serviceMapData]);
+  }, [serviceMapData, layout]);
 
 	return (
 		<Card
