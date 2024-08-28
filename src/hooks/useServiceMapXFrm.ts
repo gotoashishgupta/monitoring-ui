@@ -1,5 +1,4 @@
 import { useMemo, useCallback } from 'react';
-import { useThemeToken } from '#wf-local/theme/hooks';
 
 import * as R from 'ramda';
 
@@ -9,6 +8,7 @@ const transformNodes = R.map(
   R.applySpec({
     id: R.prop('service'),
     style: {
+      icon: 'eye',
       label: {
           value: R.prop('service'),
           textAlign: 'center',
@@ -36,7 +36,6 @@ const transformData = R.applySpec({
 
 export const useServiceMapXFrm = () => {
 
-  const { colorPrimary, colorBgBase, colorTextSecondary, colorTextTertiary, colorBgContainer } = useThemeToken();
   const serviceMapXFrmFn = useCallback(
     (x) => {
       return transformData(x)

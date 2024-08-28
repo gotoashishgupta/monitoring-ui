@@ -1,53 +1,68 @@
 import { serviceMapQueryOptions } from "#wf-local/common/queryOptions";
 import useServiceMapXFrm from "#wf-local/hooks/useServiceMapXFrm";
 import {
+  useServiceMap,
 	useServiceMapActions,
 } from "#wf-local/store/serviceMapStore";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import React, { Suspense, useCallback, useContext, useEffect, useMemo, useState } from "react";
-import Graphin, { Behaviors, Utils, GraphinContext } from "@antv/graphin";
-import { Select, Card, Input, type GetProps } from "antd";
-import { SelectNode } from "#wf-local/components/behavior/selectNode";
+import React, { Suspense, useCallback, useEffect, useMemo, useState } from "react";
+import Graphin, { Behaviors } from "@antv/graphin";
+import { Select, Card, Input, type GetProps, AutoComplete, type AutoCompleteProps, Flex, Typography } from "antd";
+import { SelectNode } from "#wf-local/components/behavior/SelectNode";
 import { GRAPHIN_LAYOUT_SELECT_OPTIONS, GRAPHIN_LAYOUT_PRESETS, SERVICE_MAP_ENVIRONMENT_SELECT_OPTIONS } from "#wf-local/common/constants";
 import { checkIfIdExists } from "#wf-local/common/fn";
 import { CircleLoading } from "#wf-local/components/loading";
+import { UserOutlined } from "@ant-design/icons";
+import { Iconify } from "#wf-local/components/icon";
 
 type SearchProps = GetProps<typeof Input.Search>;
 
 const { Search } = Input;
 
 const {FitView, ZoomCanvas, DragNode, ActivateRelations} = Behaviors;
-const LAYOUT_PRESET = {
-  type: 'gForce',
-  preset: {
-    type: 'concentric',
-  },
-};
-const DEFAULT_LAYOUT_OPTION = 'gforce_concentric';
-const DEFAULT_ENV_OPTION = 'e2e';
-const DEFAULT_SELECTED_NODE = '' ; //'e2e-cfe-dorja';
 
+const DEFAULT_SELECTED_NODE = '' ; //'e2e-cfe-dorja';
 
 export const ServiceMap: React.FC = () => {
   const [refreshCount, setRefreshCount] = useState(1);
-  const [env, setEnv] = useState(DEFAULT_ENV_OPTION);
+  const { env, layout } = useServiceMap();
 	const { data } = useSuspenseQuery(serviceMapQueryOptions(env));
-	const { setServiceMap } = useServiceMapActions();
+  const [searchOptions, setSearchOptions] = useState<AutoCompleteProps["options"]>([])
+	const { setServiceMap, setLayout, setEnv } = useServiceMapActions();
 	const serviceMapXFrmFn = useServiceMapXFrm();
 
 	const serviceMapData = useMemo(() => {
     console.log(`Refecting service map data`);
 		setServiceMap(data);
+
+    setSearchOptions([
+      {
+        label: <Flex align="center" justify="space-between">Total {data.nodes.length} Services</Flex>,
+        options: data.nodes.map((x) => {
+          return {
+            value: x.service,
+            order_strength: data.edges.filter(y => x.service === y.source || x.service === y.target).length,
+            label: (
+              <div>
+                <div>{x.service}</div>
+                <Flex justify="space-between" align="center">
+                  <Typography.Text type="secondary"><Iconify icon="carbon:connect-source" ></Iconify> {data.edges.filter(y => x.service === y.source).length ?? 0}</Typography.Text>
+                  <Typography.Text type="secondary">{data.edges.filter(y => x.service === y.target).length ?? 0}<Iconify icon="carbon:connect-target" ></Iconify></Typography.Text>
+                </Flex>
+              </div>
+
+            )
+          }
+        }).sort((a, b) => b.order_strength - a.order_strength)
+      }
+    ]);
 		return serviceMapXFrmFn(data);
 	}, [data]);
 
-  const [layout, setLayout] = useState(LAYOUT_PRESET);
-  const [defaultLayoutOption, setDefaultLayoutOption] = useState(DEFAULT_LAYOUT_OPTION);
   const [selectedNode, setSelectedNode] = useState(DEFAULT_SELECTED_NODE);
 
   const onSearch = useCallback((nodeId) => {
     const shouldFocus = checkIfIdExists(nodeId, serviceMapData);
-    console.log('should focus', shouldFocus, nodeId);
     if(shouldFocus) {
       setSelectedNode(nodeId);
     }
@@ -58,11 +73,12 @@ export const ServiceMap: React.FC = () => {
   }, [selectedNode]);
 
   const onLayoutChange = useCallback((value) => {
-    setDefaultLayoutOption(value);
-    setLayout(GRAPHIN_LAYOUT_PRESETS[value]);
+    console.log(`layout `, value, GRAPHIN_LAYOUT_PRESETS[value])
+    setLayout(value);
   }, []);
 
   const onEnvChange = useCallback((value) => {
+    console.log(`Env `, value)
     setEnv(value);
   }, []);
 
@@ -82,16 +98,24 @@ export const ServiceMap: React.FC = () => {
         <div className="min-w-62.5 w-full flex flex-grow">
           <Select
             className="min-w-[150px]"
-            defaultValue={DEFAULT_ENV_OPTION}
+            defaultValue={env}
             onChange={onEnvChange}
             options={SERVICE_MAP_ENVIRONMENT_SELECT_OPTIONS}
           />
           <span className="ms-4"></span>
-          <Search placeholder="input search text" onSearch={onSearch} enterButton allowClear onClear={onClear} className="min-w-48"/>
+          <AutoComplete
+            options={searchOptions}
+            onSelect={onSearch}
+            filterOption={(inputValue, option) =>
+              ('' + option!.value).toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
+            }
+          >
+            <Search placeholder="input search text" onSearch={onSearch} enterButton allowClear onClear={onClear} className="min-w-64"/>
+          </AutoComplete>
           <span className="ms-4"></span>
           <Select
             className="min-w-[200px]"
-            defaultValue={defaultLayoutOption}
+            defaultValue={layout}
             onChange={onLayoutChange}
             options={GRAPHIN_LAYOUT_SELECT_OPTIONS}
           />
@@ -100,7 +124,7 @@ export const ServiceMap: React.FC = () => {
 		>
       <div style={{ minHeight: `calc(100vh - 240px)` }}>
         <Suspense fallback={<CircleLoading />}>
-          <Graphin data={serviceMapData} layout={layout} style={{ minHeight: `calc(100vh - 240px)` }} key={refreshCount}>
+          <Graphin data={serviceMapData} layout={GRAPHIN_LAYOUT_PRESETS[layout]} style={{ minHeight: `calc(100vh - 240px)` }} key={refreshCount}>
             <ZoomCanvas enableOptimize maxZoom={8} minZoom={.25}/>
             <FitView isBindLayoutChange={true}/>
             <DragNode />
