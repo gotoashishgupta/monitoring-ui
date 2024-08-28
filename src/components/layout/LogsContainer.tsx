@@ -38,7 +38,7 @@ const LogsContainer: React.FC<LogsContainerProp> = memo(({tasks, milestone} : Lo
                     progress = <Spin indicator={<LoadingOutlined spin />} size="small"/>
                     break;
                   case 'failed':
-                    progress = <Progress type="circle" status="exception" size={24} />
+                    progress = <Progress type="circle" status="exception" size={24} strokeColor="#ff5630" trailColor="#ff5630"/>
                     break;
                   case 'completed':
                     progress = <Progress type="circle" percent={100} size={24}/>
@@ -50,7 +50,7 @@ const LogsContainer: React.FC<LogsContainerProp> = memo(({tasks, milestone} : Lo
                   promptTemplate = (
                     <Col span={24} flex="auto" className="mb-4 rounded-lg p-4" style={{ backgroundColor: colorBgContainerDisabled }}>
                       <Typography.Title level={5}>Prompt</Typography.Title>
-                      <Typography.Text>{('' + task?.input).replace("\n", "<br>")}</Typography.Text>
+                      {('' + task?.input).split("\n").map((x) => <div>{x}</div>)}
                     </Col>
                   )
                 }

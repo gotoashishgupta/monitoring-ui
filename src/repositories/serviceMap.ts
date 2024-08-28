@@ -1,4 +1,4 @@
-import { IMenuItem } from "#wf-types/enum";
+import { ServiceMapResonse } from "#wf-types/types";
 
 export async function getServiceMap({ queryKey }) {
 	const [_key, { env }] = queryKey;
@@ -10,7 +10,7 @@ export async function getServiceMap({ queryKey }) {
 		throw new Error("Network response was not ok");
 	}
 	const data = await response.json();
-	return data as IMenuItem[];
+	return data as ServiceMapResonse;
 }
 
 export default getServiceMap;

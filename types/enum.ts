@@ -18,7 +18,9 @@ export enum StorageEnum {
   I18N = 'i18nextLng',
   NavMenu = 'navMenu',
   ServiceMap = 'serviceMap',
-  AIStatus = 'aiStatus'
+  AIStatus = 'aiStatus',
+  ServiceMapLayout = 'serviceMapLayout',
+  ServiceMapEnv = 'serviceMapEnv'
 }
 
 export enum ThemeMode {
