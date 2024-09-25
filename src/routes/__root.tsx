@@ -1,17 +1,15 @@
-import { createRootRouteWithContext} from '@tanstack/react-router';
+import {createRootRouteWithContext} from '@tanstack/react-router';
 
-import { QueryClient } from "@tanstack/react-query";
+import {QueryClient} from '@tanstack/react-query';
 
-import { AuthContext } from "#wf-local/hooks/useAuth";
-import {PageNotFound} from '#wf-local/pages/NotFound'
-
-
+import {AuthContext} from '#wf-local/hooks/useAuth';
+import {PageNotFound} from '#wf-local/pages/NotFound';
 
 interface RouterContext {
-  authService: AuthContext;
-  queryClient: QueryClient;
+	authService: AuthContext;
+	queryClient: QueryClient;
 }
 
 export const Route = createRootRouteWithContext<RouterContext>()({
-  notFoundComponent: PageNotFound
+	notFoundComponent: PageNotFound,
 });

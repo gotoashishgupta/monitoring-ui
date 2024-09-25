@@ -1,6 +1,7 @@
 # src/components/charts
 
-Chart components with uses across multiple pages/components should be placed in this directory.
+Chart components with uses across multiple pages/components should be placed in
+this directory.
 
 Example:
 

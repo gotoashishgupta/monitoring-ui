@@ -9,9 +9,9 @@
 
 		/* Bundler mode */
 		"moduleResolution": "bundler",
-    "sourceMap": true,
-    "declaration": true,
-    "removeComments": true,
+		"sourceMap": true,
+		"declaration": true,
+		"removeComments": true,
 		"allowImportingTsExtensions": true,
 		"resolveJsonModule": true,
 		"isolatedModules": true,
@@ -28,12 +28,12 @@
 		"noPropertyAccessFromIndexSignature": true,
 		"noUncheckedIndexedAccess": true,
 
-    "baseUrl": ".",
-    "paths": {
-      "#wf-local/*": ["./src/*"],
-      "#wf-types/*": ["./types/*"]
-    }
+		"baseUrl": ".",
+		"paths": {
+			"#wf-local/*": ["./src/*"],
+			"#wf-types/*": ["./types/*"]
+		}
 	},
 	"include": ["src", "e2e", "types", "eslint.config.mts"],
-	"references": [{ "path": "./tsconfig.node.json" }]
+	"references": [{"path": "./tsconfig.node.json"}]
 }

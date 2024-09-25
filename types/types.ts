@@ -1,12 +1,12 @@
 export type ServiceMapResponseEdges = {
-  source: string;
-  target: string;
-}
+	source: string;
+	target: string;
+};
 export type ServiceMapResponseNodes = {
-  service: string;
-}
+	service: string;
+};
 
 export type ServiceMapResonse = {
-  edges: ServiceMapResponseEdges[];
-  nodes: ServiceMapResponseNodes []
-}
+	edges: ServiceMapResponseEdges[];
+	nodes: ServiceMapResponseNodes[];
+};

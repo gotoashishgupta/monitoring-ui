@@ -1,4 +1,4 @@
-import React, { CSSProperties } from "react";
+import React, {CSSProperties} from 'react';
 
 interface SvgIconProps {
 	prefix?: string;
@@ -11,15 +11,15 @@ interface SvgIconProps {
 
 export const SvgIcon: React.FC<SvgIconProps> = ({
 	icon,
-	prefix = "icon",
-	color = "currentColor",
-	size = "1em",
-	className = "",
+	prefix = 'icon',
+	color = 'currentColor',
+	size = '1em',
+	className = '',
 	style = {},
 }: SvgIconProps) => {
 	const symbolId = `#${prefix}-${icon}`;
 	const svgStyle: CSSProperties = {
-		verticalAlign: "middle",
+		verticalAlign: 'middle',
 		width: size,
 		height: size,
 		color,

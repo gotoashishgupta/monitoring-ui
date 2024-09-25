@@ -2,7 +2,8 @@
 
 Components relating to layouts should be placed in this directory.
 
-Consider using additional subdirectories with the same format (component + story + unit test) for subcomponents to aid in organization.
+Consider using additional subdirectories with the same format (component +
+story + unit test) for subcomponents to aid in organization.
 
 Example:
 

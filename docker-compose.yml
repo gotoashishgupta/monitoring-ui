@@ -1,22 +1,39 @@
 version: '3.4'
 
 services:
-
   local-secret-distributor-e2e-cost-service-api:
-    image: "wayfair/local-secret-distributor:latest"
+    image: 'wayfair/local-secret-distributor:latest'
     environment:
-      DISTRIBUTIONS: "k8s_e2e-cost-service-api-dev"
+      DISTRIBUTIONS: 'k8s_e2e-cost-service-api-dev'
     volumes:
-      - "k8s_e2e-cost-service-api-dev:/wayfair/etc/priv/k8s_e2e-cost-service-api-dev"
-      - "k8s_e2e-cost-service-api-dev:/wayfair/etc/priv/credentials"
-      - "~/.vault-token:/root/hosthomedir/.vault-token"
-      - "/var/run/docker.sock:/run/docker.sock"
+      - 'k8s_e2e-cost-service-api-dev:/wayfair/etc/priv/k8s_e2e-cost-service-api-dev'
+      - 'k8s_e2e-cost-service-api-dev:/wayfair/etc/priv/credentials'
+      - '~/.vault-token:/root/hosthomedir/.vault-token'
+      - '/var/run/docker.sock:/run/docker.sock'
 
   mock.api:
     ports:
-      - "8080:8080"
+      - '8080:8080'
     image: wayfair/mock.api
-    command: ["conda", "run", "--no-capture-output", "-n", "api.mock", "poetry", "run", "gunicorn", "-w", "4", "-k", "uvicorn.workers.UvicornWorker", "app:app", "--bind", "0.0.0.0:8080", "--reload"]
+    command:
+      [
+        'conda',
+        'run',
+        '--no-capture-output',
+        '-n',
+        'api.mock',
+        'poetry',
+        'run',
+        'gunicorn',
+        '-w',
+        '4',
+        '-k',
+        'uvicorn.workers.UvicornWorker',
+        'app:app',
+        '--bind',
+        '0.0.0.0:8080',
+        '--reload',
+      ]
     build:
       dockerfile: Dockerfile
       context: ./api/mock
@@ -24,16 +41,16 @@ services:
     environment:
       - ENVIRONMENT=dev
     volumes:
-      - "./api/mock:/app"
-      - "k8s_e2e-cost-service-api-dev:/wayfair/etc/priv/credentials"
+      - './api/mock:/app'
+      - 'k8s_e2e-cost-service-api-dev:/wayfair/etc/priv/credentials'
     depends_on:
       - local-secret-distributor-e2e-cost-service-api
 
   monitoring-ai:
     ports:
-      - "5173:5173"
+      - '5173:5173'
     image: wayfair/monitoring-ai
-    command: ["yarn", "dev"]
+    command: ['yarn', 'dev']
     build:
       dockerfile: Dockerfile
       context: .
@@ -41,12 +58,13 @@ services:
     environment:
       - NODE_ENV=development
       - CHOKIDAR_USEPOLLING=true
-      - VITE_API_URL=http://localhost:8080
+      - VITE_API_URL=https://kube-e2e-tools.service.intradsm1.sdeconsul.csnzoo.com
+      # - VITE_API_URL=http://localhost:8080
       - VITE_APP_HOMEPAGE="/dashboard"
     volumes:
       - /app/node_modules
-      - "./:/app"
-      - "k8s_e2e-cost-service-api-dev:/wayfair/etc/priv/credentials"
+      - './:/app'
+      - 'k8s_e2e-cost-service-api-dev:/wayfair/etc/priv/credentials'
     depends_on:
       - local-secret-distributor-e2e-cost-service-api
 

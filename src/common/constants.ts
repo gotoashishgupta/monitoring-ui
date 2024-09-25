@@ -1,173 +1,173 @@
 export const GRAPHIN_LAYOUT_SELECT_OPTIONS = [
-  {
-		label: "Force2",
-		value: "force2",
+	{
+		label: 'Force2',
+		value: 'force2',
 	},
 	{
-		label: "gForce",
-		value: "gforce",
+		label: 'gForce',
+		value: 'gforce',
 	},
 	{
-		label: "gForce - concentric",
-		value: "gforce_concentric",
-	},
-  {
-		label: "comboCombined",
-		value: "comboCombined",
+		label: 'gForce - concentric',
+		value: 'gforce_concentric',
 	},
 	{
-		label: "dagre",
-		value: "dagre",
+		label: 'comboCombined',
+		value: 'comboCombined',
 	},
 	{
-		label: "comboForce",
-		value: "comboForce",
-	},
-  {
-		label: "forceAtlas2",
-		value: "forceAtlas2",
+		label: 'dagre',
+		value: 'dagre',
 	},
 	{
-		label: "graphin-force",
-		value: "graphin_force",
+		label: 'comboForce',
+		value: 'comboForce',
 	},
 	{
-		label: "fruchterman",
-		value: "fruchterman",
+		label: 'forceAtlas2',
+		value: 'forceAtlas2',
 	},
 	{
-		label: "concentric",
-		value: "concentric",
+		label: 'graphin-force',
+		value: 'graphin_force',
 	},
 	{
-		label: "circular",
-		value: "circular",
+		label: 'fruchterman',
+		value: 'fruchterman',
 	},
 	{
-		label: "force",
-		value: "force",
+		label: 'concentric',
+		value: 'concentric',
 	},
 	{
-		label: "grid",
-		value: "grid",
+		label: 'circular',
+		value: 'circular',
 	},
 	{
-		label: "radial",
-		value: "radial",
+		label: 'force',
+		value: 'force',
 	},
 	{
-		label: "mds",
-		value: "mds",
+		label: 'grid',
+		value: 'grid',
+	},
+	{
+		label: 'radial',
+		value: 'radial',
+	},
+	{
+		label: 'mds',
+		value: 'mds',
 	},
 ];
 
 export const GRAPHIN_LAYOUT_PRESETS = {
-  force2: {
-    type: "force2",
-    workerEnabled: true,
-    preventOverlap: true,
-    nodeSpacing: 100
-  },
+	force2: {
+		type: 'force2',
+		workerEnabled: true,
+		preventOverlap: true,
+		nodeSpacing: 100,
+	},
 	gforce: {
-		type: "gForce",
-    nodeStrength: 1000,
-    edgeStrength: 200,
-    nodeSize: 10,
+		type: 'gForce',
+		nodeStrength: 1000,
+		edgeStrength: 200,
+		nodeSize: 10,
 		workerEnabled: true,
 		gpuEnabled: false,
-    preventOverlap: true,
-    preset: {
-      type: "fruchterman"
-    }
+		preventOverlap: true,
+		preset: {
+			type: 'fruchterman',
+		},
 	},
 	gforce_concentric: {
-		type: "gForce",
+		type: 'gForce',
 		preset: {
-			type: "concentric",
-      maxLevelDiff: 10,
-      sortBy: "degree",
-      linkDistance: 50, // The edge length
-      preventOverlap: true, // nodeSize or size in data is required for preventOverlap: true
-      nodeSize: 30,
-      sweep: 10,
-      equidistant: false,
-      startAngle: 0,
-      clockwise: false,
-      workerEnabled: true, // Whether to activate web-worker
+			type: 'concentric',
+			maxLevelDiff: 10,
+			sortBy: 'degree',
+			linkDistance: 50, // The edge length
+			preventOverlap: true, // nodeSize or size in data is required for preventOverlap: true
+			nodeSize: 30,
+			sweep: 10,
+			equidistant: false,
+			startAngle: 0,
+			clockwise: false,
+			workerEnabled: true, // Whether to activate web-worker
 		},
-    workerEnabled: true, // Whether to activate web-worker
+		workerEnabled: true, // Whether to activate web-worker
 	},
-  comboCombined: {
-    type: "comboCombined",
-    workerEnabled: true, // Whether to activate web-worker
-  },
+	comboCombined: {
+		type: 'comboCombined',
+		workerEnabled: true, // Whether to activate web-worker
+	},
 	dagre: {
-		type: "dagre",
-    rankdir: 'LR', // The center of the graph by default
-    align: 'DL',
-    nodesep: 20,
-    ranksep: 50,
-    controlPoints: true,
-    workerEnabled: true,
-    sortByCombo: true
+		type: 'dagre',
+		rankdir: 'LR', // The center of the graph by default
+		align: 'DL',
+		nodesep: 20,
+		ranksep: 50,
+		controlPoints: true,
+		workerEnabled: true,
+		sortByCombo: true,
 	},
 	comboForce: {
-		type: "comboForce",
-    linkDistance: 50,         // Edge length
-    nodeStrength: 30,
-    edgeStrength: 0.1,
-    preventOverlap: true,
-    preventNodeOverlap: true,
-    preventComboOverlap: true,
-    nodeCollideStrength: 1,
-    comboCollideStrength: 1,
-    nodeSpacing: 100,
-    comboSpacing: 300,
-    workerEnabled: true, // Whether to activate web-worker
+		type: 'comboForce',
+		linkDistance: 50, // Edge length
+		nodeStrength: 30,
+		edgeStrength: 0.1,
+		preventOverlap: true,
+		preventNodeOverlap: true,
+		preventComboOverlap: true,
+		nodeCollideStrength: 1,
+		comboCollideStrength: 1,
+		nodeSpacing: 100,
+		comboSpacing: 300,
+		workerEnabled: true, // Whether to activate web-worker
 	},
-  forceAtlas2: {
-    type: "forceAtlas2",
-    preventOverlap: true,
-    preset: {
-			type: "concentric"
-    },
-    workerEnabled: true, // Whether to activate web-worker
-  },
+	forceAtlas2: {
+		type: 'forceAtlas2',
+		preventOverlap: true,
+		preset: {
+			type: 'concentric',
+		},
+		workerEnabled: true, // Whether to activate web-worker
+	},
 	graphin_force: {
-		type: "graphin-force",
-    workerEnabled: true, // Whether to activate web-worker
+		type: 'graphin-force',
+		workerEnabled: true, // Whether to activate web-worker
 	},
 	fruchterman: {
-		type: "fruchterman",
-    workerEnabled: true, // Whether to activate web-worker
+		type: 'fruchterman',
+		workerEnabled: true, // Whether to activate web-worker
 	},
 	concentric: {
-		type: "concentric",
+		type: 'concentric',
 		maxLevelDiff: 10,
-		sortBy: "degree",
-    preventOverlap: true, // nodeSize or size in data is required for preventOverlap: true
-    nodeSize: 10,
-    sweep: 10,
-    equidistant: false,
-    startAngle: 0,
-    clockwise: false,
-    nodeSpacing: 100,
-    workerEnabled: true, // Whether to activate web-worker
+		sortBy: 'degree',
+		preventOverlap: true, // nodeSize or size in data is required for preventOverlap: true
+		nodeSize: 10,
+		sweep: 10,
+		equidistant: false,
+		startAngle: 0,
+		clockwise: false,
+		nodeSpacing: 100,
+		workerEnabled: true, // Whether to activate web-worker
 	},
 	grid: {
-		type: "grid",
-    workerEnabled: true, // Whether to activate web-worker
+		type: 'grid',
+		workerEnabled: true, // Whether to activate web-worker
 	},
 	circular: {
-		type: "circular",
-    workerEnabled: true, // Whether to activate web-worker
+		type: 'circular',
+		workerEnabled: true, // Whether to activate web-worker
 	},
 	radial: {
-		type: "radial",
-    workerEnabled: true, // Whether to activate web-worker
+		type: 'radial',
+		workerEnabled: true, // Whether to activate web-worker
 	},
 	force: {
-		type: "force",
+		type: 'force',
 		preventOverlap: true,
 		linkDistance: 50,
 		nodeStrength: 30,
@@ -178,34 +178,34 @@ export const GRAPHIN_LAYOUT_PRESETS = {
 		alphaDecay: 0.3,
 		alphaMin: 0.01,
 		forceSimulation: null,
-    workerEnabled: true, // Whether to activate web-worker
+		workerEnabled: true, // Whether to activate web-worker
 		onTick: () => {
-			console.log("ticking");
+			console.log('ticking');
 		},
 		onLayoutEnd: () => {
-			console.log("force layout done");
+			console.log('force layout done');
 		},
 	},
 	mds: {
-		type: "mds",
+		type: 'mds',
 		workerEnabled: true,
 	},
 };
 
 export const SERVICE_MAP_ENVIRONMENT_SELECT_OPTIONS = [
 	{
-		label: "Production",
-		value: "prod",
+		label: 'Production',
+		value: 'prod',
 	},
-  {
-		label: "Development",
-		value: "dev",
+	{
+		label: 'Development',
+		value: 'dev',
 	},
-  {
-		label: "E2E",
-		value: "e2e",
+	{
+		label: 'E2E',
+		value: 'e2e',
 	},
-]
+];
 
-export const DEFAULT_SERVICE_MAP_ENV_OPTION = "e2e";
-export const DEFAULT_SERVICE_MAP_LAYOUT_OPTION = "gforce_concentric"
+export const DEFAULT_SERVICE_MAP_ENV_OPTION = 'e2e';
+export const DEFAULT_SERVICE_MAP_LAYOUT_OPTION = 'gforce_concentric';

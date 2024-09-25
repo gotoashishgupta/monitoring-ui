@@ -1,6 +1,6 @@
-import React, { useCallback } from "react";
-import { Result } from "antd";
-import { Link } from "@tanstack/react-router";
+import React, {useCallback} from 'react';
+import {Result} from 'antd';
+import {Link} from '@tanstack/react-router';
 
 export const PageNotFound: React.FC = () => (
 	<Result
@@ -17,6 +17,5 @@ export const PageNotFound: React.FC = () => (
 		}
 	/>
 );
-
 
 export default PageNotFound;
