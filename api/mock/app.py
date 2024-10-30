@@ -1,10 +1,11 @@
-from fastapi import FastAPI, Request, HTTPException
-from fastapi.responses import JSONResponse
-from fastapi.middleware.cors import CORSMiddleware
-from constants import MenuItem, MenuType
 import json
-from faker import Faker
 import logging
+
+from constants import MenuItem, MenuType
+from faker import Faker
+from fastapi import FastAPI, HTTPException, Request
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 
 # Set up logging configuration
 logging.basicConfig(

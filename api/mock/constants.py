@@ -1,8 +1,9 @@
+import random
 from enum import Enum
 from typing import List, Optional
-from pydantic import BaseModel
+
 from faker import Faker
-import random
+from pydantic import BaseModel
 
 
 class MenuStatus(Enum):
