@@ -20,8 +20,10 @@ export default defineConfig(({ mode: _ }) => {
 		],
 		define: {
 			// Define any custom environment variables here
-			"process.env.VITE_API_URL": JSON.stringify(process.env.VITE_API_URL),
-			"process.env.VITE_APP_HOMEPAGE": process.env.VITE_APP_HOMEPAGE,
+			'process.env.VITE_API_URL': JSON.stringify(process.env.VITE_API_URL),
+			'process.env.VITE_APP_HOMEPAGE': JSON.stringify(
+				process.env.VITE_APP_HOMEPAGE
+			),
 		},
 		server: {
 			host: true,
