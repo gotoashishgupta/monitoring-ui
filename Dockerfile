@@ -10,6 +10,7 @@ RUN yarn install --dev
 COPY . .
 
 EXPOSE 5173
+VOLUME "/app/node_modules"
 
 FROM node:20-alpine AS builder
 

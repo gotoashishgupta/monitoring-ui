@@ -1,5 +1,6 @@
 # monitoring-ui
 
 ```sh
-docker compose up --build -- monitoring-ai
+docker compose build --no-cache monitoring-ai && \
+docker compose up -- monitoring-ai
 ```
